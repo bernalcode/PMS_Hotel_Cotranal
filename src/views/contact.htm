@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= title %>
+    </title>
+    <%- include('partial/head.html');%>
+
+
+
+
+</head>
+
+<body>
+
+    <%- include('partial/header.html');%>
+
+        <!-- ///////// RUTA DE NAVEGACION //////// -->
+        <section class="w3l-breadcrumb">
+            <div class="breadcrum-bg py-sm-5 py-4">
+                <div class="container py-lg-3 kkk">
+
+                    <h2>CONTACTO</h2>
+                    <p><a href="/">Inicio</a> &nbsp; / &nbsp; Contacto</p>
+
+                </div>
+            </div>
+        </section>
+        <!-- ///////// RUTA DE NAVEGACION //////// -->
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+
+        <div class="d-grid contact-view container">
+            <div class="cont-details">
+                <p>contactenos!</p>
+                <h3 class="title-big">Contacto y Ubicacion</h3>
+
+            </div>
+            <div class="map-content-9">
+                <p>Tendremos el gusto de atender cualquier <b>Peticion, Queja, Reclamo o sugerencia...</b> <br> Escribenos tus dudas y recibiras por parte de nuestro equipo una pronta respuesta.. <br> <br> Recuerda que si quieres reservar da
+                    <a href="/#booking">click en en este link</a></p>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+
+
+        <!-- FORMULARIO -->
+
+
+        <div class="container" id="form" style="background-color:rgb(255, 237, 231);">
+            <!-- FORMULARIO -->
+            <br>
+            <br>
+            <center>
+                <h1 style="color: coral;"><span><i>Formulario de Contacto</i></span></h1>
+            </center>
+            <hr style="border: 2px solid rgb(101, 161, 4);">
+
+            <br>
+            <br>
+            <br>
+
+            <div class="contenido">
+                <div class="info">
+                    <br><br>
+
+
+                    <div class="col">
+                        <i class="icono fas fa-map-marker-alt"></i>
+                        <p style="color: black;">Cra. 9 ##3-144, Pamplona, Norte de Santander - Colombia</p>
+                    </div>
+                    <br>
+                    <br>
+
+
+                    <div class="col">
+                        <i class="icono fas fa-envelope"></i>
+                        <p style="color: black;">cotranalplaza@gmail.com</p>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+
+                    <div class="col">
+                        <i class="icono fas fa-phone"></i>
+                        <p style="color: black;">5684441 <br> 320 280 3508</p>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="redes-s">
+                        <a href="https://www.facebook.com/CotranalPlaza/"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+
+
+                </div>
+
+                <form action="/contact" method="POST" class="formulario">
+                    <input type="text" name="nombre" placeholder="Nombre" id="nombre">
+                    <input type="text" name="celular" placeholder="Celular" id="movil">
+                    <input type="email" name="correo" placeholder="Correo" id="correo">
+                    <input type="text" name="asunto" placeholder="Asunto" id="asunto">
+                    <textarea name="mensaje" id="mensaje" placeholder="Mensaje!"></textarea>
+                    <br><br>
+                    <button type="submit" onclick="return validarFormulario();">Enviar</button>
+
+                    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+                    <script>
+                        validarFormulario = () => {
+
+                            //removemos el div con la clase alert
+                            $('.alert').remove();
+
+                            //declaracion de variables
+                            let nombre = $('#nombre').val(),
+                                movil = $('#movil').val(),
+                                correo = $('#correo').val(),
+                                asunto = $('#asunto').val(),
+                                mensaje = $('#mensaje').val();
+
+                            //validacion global de los campos
+                            if (correo == "" || correo == null && asunto == "" || asunto == null && movil == "" || movil == null && nombre == "" || nombre == null) {
+                                cambiarColor('nombre');
+                                cambiarColor('movil');
+                                cambiarColor('correo');
+                                cambiarColor('asunto');
+                                mostrarAlerta('Campos obligatorios!');
+                                return false;
+                            }
+                            //validamos el campo nombre
+                            if (nombre == "" || nombre == null) {
+                                //cambiar color del borde 
+                                cambiarColor("nombre");
+                                // m ostramos el mensaje de alerta
+                                mostrarAlerta('Campo "Nombre" obligatorio');
+                                return false;
+                            } else {
+                                let expresion = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/;
+                                if (!expresion.test(nombre)) {
+                                    //mostrara el mensaje que debe ingresar un nombre valido
+                                    cambiarColor('nombre');
+                                    mostrarAlerta('No se permiten caracteres especiales o numeros');
+                                    return false;
+                                }
+                            }
+                            //validamos el campo Celular
+                            if (movil == "" || movil == null) {
+                                //cambiar color del borde 
+                                cambiarColor("movil");
+                                // mostramos el mensaje de alerta
+                                mostrarAlerta('Campo "Celular" obligatorio');
+                                return false;
+                            } else {
+                                let expresion = /^([0-9])*$/;
+                                if (!expresion.test(movil)) {
+                                    //mostrara el mensaje que debe ingresar un Celular valido
+                                    cambiarColor('movil');
+                                    mostrarAlerta('Por favor ingresa un numero valido');
+                                    return false;
+                                }
+                            }
+                            //validamos el campo correo
+                            if (correo == "" || correo == null) {
+                                //cambiar color del borde 
+                                cambiarColor("correo");
+                                // mostramos el mensaje de alerta
+                                mostrarAlerta('Campo "Correo" obligatorio');
+                                return false;
+                            } else {
+                                let expresion = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+                                if (!expresion.test(correo)) {
+                                    //mostrara el mensaje que debe ingresar un nombre valido
+                                    cambiarColor('correo');
+                                    mostrarAlerta('Por favor ingresa un correo valido');
+                                    return false;
+                                }
+                            }
+
+                            //validamos el campo Asunto
+                            if (asunto == "" || asunto == null) {
+                                //cambiar color del borde 
+                                cambiarColor("asunto");
+                                // mostramos el mensaje de alerta
+                                mostrarAlerta('Campo "Asunto" obligatorio');
+                                return false;
+                            } else {
+                                let expresion = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/;
+                                if (!expresion.test(asunto)) {
+                                    //mostrara el mensaje que debe ingresar un nombre valido
+                                    cambiarColor('asunto');
+                                    mostrarAlerta('Por favor ingresa un Asunto Valido');
+                                    return false;
+
+                                }
+                            }
+
+                            return true;
+                        };
+
+                        cambiarColor = (dato) => {
+                            $('#' + dato).css({
+                                border: "1px solid #dd5144"
+                            });
+                        };
+
+
+
+                        mostrarAlerta = (texto) => {
+                            $('#nombre').before('<div class="alert">Error: ' + texto + '</div>');
+                        }
+                    </script>
+
+                </form>
+
+
+
+
+
+
+            </div>
+            <br><br>
+
+            <hr style="border: 2px solid rgb(101, 161, 4);">
+            <br><br>
+        </div>
+
+
+
+
+
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <div>
+            <%- include('partial/footer.html');%>
+        </div>
+        <div>
+            <%- include('partial/footer-2.html');%>
+        </div>
+
+
+
+</body>
+
+</html> 

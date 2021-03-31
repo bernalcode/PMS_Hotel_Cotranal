@@ -1,0 +1,126 @@
+<center><button class="btn btn-info m-2" onclick="return atras();">Atras</button></center>
+
+<div class="container p-3">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div class="card">
+
+                <div class="card-body" style="border: solid 2px rgb(114, 236, 14);">
+                    <form action="/pms/editar/{{cliente.id}}" method="POST">
+                        {{!--------------------------------- NOMBRE - APELLIDO ---------------------------------}}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6>Nombre</h6>
+                                    <input type="text" name="nombre" class="form-control" value="{{cliente.nombre}}">
+                                </div>
+                                <div class="col-6">
+                                    <h6>Apellido</h6>
+                                    <input type="text" name="apellido" class="form-control"
+                                        value="{{cliente.apellido}}">
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- ////////////////////////////////////////////////////////////////////// --}}
+
+
+                        {{!--------------------------------- CEDULA - CELULAR ---------------------------------}}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6>Cedula</h6>
+                                    <input type="text" name="numero_documento" class="form-control"
+                                        value="{{cliente.numero_documento}}">
+                                </div>
+                                <div class="col-6">
+                                    <h6>Celular</h6>
+                                    <input type="text" name="celular" class="form-control" value="{{cliente.celular}}">
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- ////////////////////////////////////////////////////////////////////// --}}
+
+                        {{!-------------------------------------- CORREO ---------------------------------}}
+                        <div class="form-group">
+                            <h6>Correo</h6>
+                            <input type="text" name="correo" class="form-control" value="{{cliente.correo}}">
+                        </div>
+                        {{!-- ////////////////////////////////////////////////////////////////////// --}}
+
+                        {{!------------------------ TIPO_DOC \ FECHA_EXPE \ LUGAR_EXPE -------------------}}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6>Tipo de Documento</h6>
+                                    <select name="tipo_documento" class="form-control" placeholder="Tipo de documento">
+                                        <option disabled="disabled" selected="selected" value="1">
+                                            {{cliente.tipo_documento}}</option>
+                                        <option value="1">Cedula</option>
+                                        <option value="2">Cedula de Extranjeria</option>
+                                        <option value="3">Diplomatico</option>
+                                        <option value="4">Documento de Extranjeros</option>
+                                        <option value="5">NIT</option>
+                                        <option value="6">NIT Persona Natural</option>
+                                        <option value="7">NUIP</option>
+                                        <option value="8">Pasaporte</option>
+                                        <option value="9">Registro Civil</option>
+                                        <option value="10">Tarjeta de Identidad</option>
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <h6>Fecha Expedicion</h6>
+                                    <input type="date" name="fecha_expedicion" class="form-control"
+                                        value="{{fecha_final}}">
+                                </div>
+                                <div class="col-4">
+                                    <h6>Lugar Expedicion</h6>
+                                    <input type="text" name="lugar_expedicion" class="form-control"
+                                        value="{{cliente.lugar_expedicion}}">
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- ////////////////////////////////////////////////////////////////////// --}}
+
+                        {{!----------------------------- SEXO - NACIONALIDAD --------------------------}}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6>Sexo</h6>
+                                    <select name="sexo" class="form-control">
+                                        <option disabled="disabled" selected="selected">
+                                            {{cliente.sexo}}</option>
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Femenino</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <h6>Nacionalidad</h6>
+                                    <input type="text" name="nacionalidad" class="form-control"
+                                        value="{{cliente.nacionalidad}}">
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- ////////////////////////////////////////////////////////////////////// --}}
+
+                        {{!----------------------------- EDITAR - BORRAR --------------------------}}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-success btn-block">
+                                        Editar
+                                    </button>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <input type="button" value="Borrar" name="noSeBorro" onclick="borrar_cliente();"
+                                        class="btn btn-danger btn-block">
+                                    <a href="/pms/borrar-cliente/{{cliente.id}}" id="borrar_cliente"></a>
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- ////////////////////////////////////////////////////////////////////// --}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

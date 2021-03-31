@@ -1,0 +1,65 @@
+<div class="container p-3">
+    <div class="row">
+        <div class="col-md-4">
+            <h6><strong>Buscar:</strong></h6>
+            <div class="card text-center" style="background-color: rgb(186, 201, 250);">
+
+                <div class="card-body">
+                    <form action="#" method="POST">
+                        <input type="search" name="busqueda" class="form-control" placeholder="Escribe tu Busqueda..."
+                            autofocus>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 ml-auto" id="nuevo-cliente">
+            <a href="https://accounts.google.com/signin/v2/identifier?passive=1209600&continue=https%3A%2F%2Faccounts.google.com%2Fb%2F0%2FAddMailService&followup=https%3A%2F%2Faccounts.google.com%2Fb%2F0%2FAddMailService&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="btn btn-success btn-block" target="blank">ir a Gmail</a>
+        </div>
+    </div>
+</div>
+<div class="container p-4 m-4 mx-auto" id="jan">
+    <div class="row text-center m-2 p-2 justify-content-center align-items-center bg-info">
+
+
+
+        <div class="col-md-3 ">
+            <h5>Nombre</h5>
+        </div>
+        <div class="col-md-1 ">
+            <h5>Celular</h5>
+        </div>
+        <div class="col-md-3 ">
+            <h5>Correo</h5>
+        </div>
+        <div class="col-md-2 ">
+            <h5>check_in</h5>
+        </div>
+        <div class="col-md-2 ">
+            <h5>Ver</h5>
+        </div>
+
+
+    </div>
+    {{#each reserva_web}}
+    <div class="row text-center m-2 justify-content-center align-items-center">
+
+
+
+        <div class="col-md-3 ">
+            <h6>{{nombre}}</h6>
+        </div>
+        <div class="col-md-1 ">
+            <h6>{{celular}}</h6>
+        </div>
+        <div class="col-md-3 ">
+            <h6>{{correo}}</h6>
+        </div>
+        <div class="col-md-2 ">
+            <h6>{{check_in}}</h6>
+        </div>
+        <div class="col-md-2 ">
+            <a href="/pms/ver_reserva_web/{{id}}" class="btn btn-danger">Ver</a>
+        </div>
+    </div>
+    {{/each}}
+</div>

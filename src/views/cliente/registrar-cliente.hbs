@@ -1,0 +1,113 @@
+<div class="container p-3">
+    <div class="row">
+        <div class="col-md-9 mx-auto">
+            <div class="card">
+                <div class="card-header p-1" style="background-color: darkgray;">
+                    <h3 align="center">
+                        Registrar Cliente
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form action="/pms/registrar-cliente" method="POST">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Nombre</h6>
+                                    <input type="text" name="nombre" class="form-control" placeholder="Nombre"
+                                        autofocus>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Apellido</h6>
+                                    <input type="text" name="apellido" class="form-control" placeholder="Apellido">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <h6>Sexo</h6>
+                                    <select name="sexo" class="form-control">
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Femenino</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <h6>Nacionalidad</h6>
+                                    <input type="text" name="nacionalidad" class="form-control"
+                                        placeholder="Nacionalidad">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <h6>Tipo de Documento</h6>
+                                    <select name="tipo_documento" class="form-control" placeholder="Tipo de documento">
+                                        <option disabled="disabled" selected="selected" value="1">Tipo de Documento
+                                        </option>
+                                        <option value="1">Cedula</option>
+                                        <option value="2">Cedula de Extranjeria</option>
+                                        <option value="3">Diplomatico</option>
+                                        <option value="4">Documento de Extranjeros</option>
+                                        <option value="5">NIT</option>
+                                        <option value="6">NIT Persona Natural</option>
+                                        <option value="7">NUIP</option>
+                                        <option value="8">Pasaporte</option>
+                                        <option value="9">Registro Civil</option>
+                                        <option value="10">Tarjeta de Identidad</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <h6>Numero de Cedula</h6>
+                            <input type="text" name="numero_documento" class="form-control"
+                                placeholder=" Numero Cedula">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <h6>Fecha de Expedicion</h6>
+                                    <input type="date" name="fecha_expedicion" class="form-control"
+                                        placeholder="Fecha de Expedicion">
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <h6>Lugar de Expedicion</h6>
+                                    <input type="text" name="lugar_expedicion" class="form-control"
+                                        placeholder="Lugar expedicion">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Numero de Contacto</h6>
+                                    <input type="text" name="celular" class="form-control" placeholder="Celular">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Correo</h6>
+                                    <input type="text" name="correo" class="form-control" placeholder="Correo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block">
+                                Registro
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<center><a href="/pms/todas-reservas">Atras <--- </a></center>
+
+<div class="container p-3 mx-auto">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card" style="border: solid 2px rgb(90, 247, 90);">
+                <div class="card-body"> 
+                    <form action="/pms/observacion/{{id}}" method="POST">
+                        <div class="form-group"> 
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h6>Cliente</h6>
+                                    <input name="cliente" type="text" class="form-control" value="{{kato.nombre}} {{kato.apellido}}">
+                                </div>
+                                <div class="col-md-4 mx-auto">
+                                    <h6>Ver Cliente</h6>
+                                    <a href="/pms/ver/{{kato.id}}" class="btn btn-info btn-block">Ver</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                
+                                <div class="col-md-4">
+                                    <h6>Adultos</h6>
+                                    <input name="adultos" type="text" class="form-control" value="{{kato.adultos}}">
+                                </div>
+                                <div class="col-md-4">
+                                    <h6>Ninos</h6>
+                                    <input name="ninos" type="text" class="form-control" value="{{kato.ninos}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Check-In</h6>
+                                    <input name="checkin" type="text" class="form-control" value="{{fecha_in}}">
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Check-Out</h6>
+                                    <input name="checkout" type="text" class="form-control"  value="{{fecha_out}}">
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

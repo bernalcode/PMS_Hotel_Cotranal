@@ -1,0 +1,36 @@
+<div class="container p-4">
+    <div class="row">
+
+        {{#each habitacion}}
+            <div class="col-md-3">
+                <div class="card text-center p-2 m-2" style="border: solid 3px #ABFF70;">
+                    <div class="card-body">
+                        <p>Habitacion</p>
+                        <a href="#" target="blank">
+                            <h3 class="card-title text-uppercase">
+                                {{numero_habitacion}}
+                            </h3>
+                        </a>
+                        <p class="m-2">$ {{precio_habitacion}} COP</p>
+                        <p class="m-2">{{descripcion}}</p>
+                        <br>
+                        
+                        
+                        <a href="/pms/reserva/" class="btn btn-info m-1">Reservar</a>
+                        <a href="/pms/borrar/{{id_habitacion}}" class="btn btn-danger m-1">Borrar</a>
+                        <a href="/pms/editar-habitacion/{{id_habitacion}}" class="btn btn-warning m-1">Editar</a><br><br>
+                        <h6 class="bg-danger" style="color: white; padding: 10px;">Ocupada</h6>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>No hay Habitaciones guardados :( ...</p>
+                    <a href="/pms/nu-habitacion"> Registra una aqui! </a>
+                </div>
+            </div>
+
+        {{/each}}
+    </div>
+</div>

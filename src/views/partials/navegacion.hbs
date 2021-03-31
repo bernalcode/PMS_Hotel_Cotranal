@@ -1,0 +1,62 @@
+{{#if user}}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Cotranal</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+
+
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="/pms/todas-reservas">Reservas <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/pms/reserva_web">Reserva Web <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Habitaciones
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/pms/pisos">Pisos</a>
+                        <div class="dropdown-divider" style="border-color: rgb(75, 255, 4);"></div>
+                        <a class="dropdown-item" href="/pms/prueba">Todas las Habitaciones</a>
+                        <div class="dropdown-divider" style="border-color: rgb(75, 255, 4);"></div>
+                        <a class="dropdown-item" href="/pms/tipo-habitacion">Tipo de Habitaciones</a>
+                    </div>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/pms/clientes">Clientes <span class="sr-only">(current)</span></a>
+                </li>
+                {{#if user.usuario}}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/pms/admin">Admin<span class="sr-only">(current)</span></a>
+                </li>
+                {{/if}}
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Mas
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/pms/change-password">Cambiar Contraseña</a>
+                        <div class="dropdown-divider" style="border-color: rgb(75, 255, 4);"></div>
+                        <a class="dropdown-item" href="/pms/logout">Cerrar Session</a>
+                        <div class="dropdown-divider" style="border-color: rgb(75, 255, 4);"></div>
+                        <a class="dropdown-item" href="#">Entregar Turno</a>
+                    </div>
+                </li>
+                <li class="nav-item active">
+
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+{{/if}}

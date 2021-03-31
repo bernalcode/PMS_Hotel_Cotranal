@@ -1,0 +1,75 @@
+<!-- FORMULARIO DE DISPONIBILIDAD -->
+<section class="w3l-availability-form" id="booking" style="background-color: darkgray;">
+
+    <div class="w3l-availability-form-main py-5" style="height: 80vh;">
+        <div class="container pt-lg-3 pb-lg-5">
+            <div class="forms-top">
+                <div class="form-right">
+                    <div class="form-inner-cont">
+                        <br>
+
+
+                        <center>
+                            <h3 class="title-small">Consulta tu Reserva sin compromiso y te devolveremos la llamada</h3>
+                        </center><br>
+                        <form action="/check" method="POST" class="signin-form">
+                            <div class="row book-form">
+                                <div class="form-input col-md-4 col-sm-6 mt-3">
+                                    <label>Nombre</label>
+                                    <input type="text" name="nombre" placeholder="Nombre" required="">
+                                </div> 
+                                <div class="form-input col-md-4 col-sm-6 mt-3">
+                                    <label>Celular</label>
+                                    <input type="text" name="celular" placeholder="Celular" required="">
+                                </div>
+                                <div class="form-input col-md-4 col-sm-6 mt-3">
+                                    <label>Correo</label>
+                                    <input type="text" name="correo" placeholder="Correo" required="">
+                                </div> 
+                                
+                                <div class="form-input col-md-4 col-sm-6 mt-3">
+                                    <label>Fecha Check-in</label>
+                                    <input type="date" name="checkin" placeholder="Date" required="">
+                                </div> 
+                                <div class="form-input col-md-4 col-sm-6 mt-3">
+                                    <label>Fecha Check-out</label>
+                                    <input type="date" name="checkout" placeholder="Date" required="">
+                                </div>
+                                <div class="form-input col-md-4 col-sm-6 mt-3">
+                                    <label>Adultos</label>
+                                    <select name="adultos" class="selectpicker">
+                                        <option>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                        <option>04</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-input col-md-4 col-sm-6 mt-3">
+                                    <label>Ninos</label>
+                                    <select name="ninos" class="selectpicker">
+                                        <option>00</option>
+                                        <option>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                        <option>04</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-input col-md-4 col-sm-6 mt-3">
+                                    <label>Precio </label>
+                                    <input type="text" name="precio" placeholder="Precio Maximo ($)" required />
+                                </div>
+                                <div class="bottom-btn col-md-4 col-sm-6 mt-3">
+                                    <label>Consultar disponibilidad</label>
+                                    <button class="btn btn-style btn-primary w-100 px-2">consulta la disponibilidad</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- FORMULARIO DE DISPONIBILIDAD END-->

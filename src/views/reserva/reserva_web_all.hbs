@@ -1,0 +1,88 @@
+<center><button class="btn btn-info m-2" onclick="return atras();">Atras</button></center>
+
+<div class="container p-3">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div class="card">
+
+                <div class="card-body" style="border: solid 2px rgb(114, 236, 14);">
+                    
+                        {{!--------------------------------- NOMBRE - APELLIDO ---------------------------------}}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6>Nombre</h6>
+                                    <h5 class="form-control">{{db.nombre}}</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h6>Celular</h6>
+                                    <h5 class="form-control">{{db.celular}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- ////////////////////////////////////////////////////////////////////// --}}
+
+
+                        {{!-------------------------------------- CORREO - PRECIO ---------------------------------}}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6>Correo</h6>
+                                    <h6 class="form-control">{{db.correo}}</h6>
+                                </div>
+                                <div class="col-6">
+                                    <h6>Precio</h6>
+                                    <h6 class="form-control">{{db.precio}}</h6>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- ////////////////////////////////////////////////////////////////////// --}}
+
+
+                        {{!--------------------------------- CHECK_IN - CHECK_OUT ---------------------------------}}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6>Check In</h6>
+                                    <h6 class="form-control">{{db.check_in}}</h6>
+                                        
+                                </div>
+                                <div class="col-6">
+                                    <h6>Check Out</h6>
+                                    <h6 class="form-control">{{db.check_out}}</h6>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- ////////////////////////////////////////////////////////////////////// --}}
+
+                        {{!--------------------------------- ADULTOS - NIÑOS ---------------------------------}}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6>Adultos</h6>
+                                    <h6 class="form-control">{{db.adultos}}</h6>
+                                    
+                                </div>
+                                <div class="col-6">
+                                    <h6>Niños</h6>
+                                    <h6 class="form-control">{{db.ninos}}</h6>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- ////////////////////////////////////////////////////////////////////// --}}
+
+
+
+
+
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<center><a href="/pms/admin">
+        <--- Atras</a>
+</center>
+
+<div id="jan">
+
+    <div class="container m-3 mx-auto bg-info">
+        <div class="row text-center p-2">
+            <div class="col-2">
+                <h6><b>Nombre Completo</b></h6>
+            </div>
+            <div class="col-2">
+                <h6><b>Usuario</b></h6>
+            </div>
+            <div class="col-2">
+                <h6><b>Tipo de Usuario</b></h6>
+            </div>
+            <div class="col-2">
+                <h6><b>Borrar</b></h6>
+            </div>
+            <div class="col-2">
+                <h6><b>Reset</b></h6>
+            </div>
+            <div class="col-2">
+                <h6><b> [ + ] </b></h6>
+            </div>
+        </div>
+    </div>
+
+ 
+    {{#each todos}}
+    <div class="container mx-auto  m-2">
+        <div class="row text-center">
+            <div class="col-2">
+                <h6>{{ fullname }}</h6>
+            </div>
+            <div class="col-2">
+                <h6>{{ username }}</h6>
+            </div>
+            <div class="col-2">
+                <h6>{{ tipo_usuario }}</h6>
+            </div>
+            <div class="col-2">
+                <a href="/pms/borrar-user/{{id}}" onclick="return BorrarUserPms();" class="btn btn-danger">Borrar Usuario</a>
+            </div>
+            <div class="col-2">
+                <a href="/pms/reset-password/{{id}}" onclick="return ResetPassword();" class="btn btn-success">Reset password</a>
+            </div>
+            <div class="col-2">
+                <a href="#/" class="btn btn-warning" style="color: black;">Mas ...</a>
+            </div>
+        </div>
+        <div class="dropdown-divider" style="border-color: black;"></div>
+    </div>
+    {{/each}}
+
+</div> 

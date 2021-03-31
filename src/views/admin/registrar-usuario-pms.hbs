@@ -1,0 +1,40 @@
+<center><a href="/pms/admin" style="margin: 5px; padding: 10px;"><--- Atras </a></center>
+
+<div class="container p-4">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-md-5 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        <h4 align="center">Registrarse</h4>
+                    </div> 
+                    <div class="card-body">
+                        <form action="/pms/signup" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="fullname" class="form-control" placeholder="Nombre Completo" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <select name="tipo_usuario" id=""  class="form-control">
+                                    <option value="" selected="selected" disabled="disabled">Tipo Usuario</option>
+                                    <option value="admin" class="form-control">Administrador</option>
+                                    <option value="recep" class="form-control">Recepcionita</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="username" class="form-control" placeholder="Nombre de Usuario">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" class="form-control" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-block">
+                                    Registrar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

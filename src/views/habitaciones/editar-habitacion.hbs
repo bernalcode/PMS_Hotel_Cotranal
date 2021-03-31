@@ -1,0 +1,81 @@
+<center><a href="/pms/prueba">
+        <--- Atras</a>
+</center>
+<div class="container p-4">
+    <div class="row">
+        <div class="col-m d-4 mx-auto">
+            <div class="card">
+                <div class="card-header bg-info">
+                    <h3 align="center">Editar Habitacion</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/pms/editar-habitacion/{{dato.id_habitacion}}" method="POST">
+                        <div class="form-group">
+                            <h6>Numero a editar:</h6>
+                            <input type="text" name="numero_habitacion" class="form-control"
+                                value="{{dato.numero_habitacion}}">
+                        </div>
+
+                        <div class="form-group">
+                            <h6>Seleccione el tipo a editar:</h6>
+
+                            <select name="id_tipo_habitacion" class="form-control">
+                                <option selected="true" value="{{dato.id_tipo_habitacion}}">{{select}}</option>
+                                {{#each newTipo}}
+
+                                <option value="{{this.id_tipo_habitacion}}">
+                                    {{this.descripcion}}
+                                </option>
+                                {{/each}}
+
+                            </select>
+ 
+                        </div>
+                        <div class="form-group">
+                            <h6>Estado Habitacion</h6>
+                            <select name="estado" class="form-control">
+                                <option value="{{std}}" selected="true">{{std}}</option>
+                                {{#each esta}}
+                                <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block">
+                                Editar
+                            </button>
+                            <input type="button" value="Borrar" onclick="seg();" class="btn btn-danger btn-block">
+                            <div class="col-md-2 ">
+
+                                <a href="/pms/borrar-habi/{{dato.id_habitacion}}" id="bolar"></a>
+                                <script>
+                                    async function seg() {
+                                        const result = await Swal.fire({
+                                            title: 'Estas Seguro?',
+                                            text: "Se eliminaran todos los registros !",
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#3085d6',
+                                            cancelButtonColor: '#d33',
+                                            confirmButtonText: 'Borrar'
+                                        })
+                                        if (result.value == true) {
+                                            document.getElementById("bolar").click();
+                                        }
+                                    };
+
+                                </script>
+
+
+
+                                <script
+                                    src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.min.js"></script>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

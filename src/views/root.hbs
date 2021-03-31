@@ -1,0 +1,59 @@
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<a href="#" id="pass" name="{{pass}}" style="display: none;"></a>
+<a href="#" id="bol" name="{{bol}}" style="display: none;"></a>
+{{#if nx}}
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Usuario no Existe !!',
+        text: `Ingresa un Usuario existente...`,
+        footer: 'o pidele a Admin que te Registre.'
+    })
+</script>
+{{/if}}
+{{#if bol}}
+<script>
+    Swal.fire(
+        'Contraseña incorrecta !!',
+        'Intentalo de nuevo + ',
+        'error'
+    )
+</script>
+{{/if}}
+
+<div class="container p-1">
+    <br>
+    <div class="container p-2">
+        <div class="row">
+            <div class="col-md-5 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        <h4 align="center">Ingresar</h4>
+                    </div>
+                    <div class="card-body">
+                        <center><img src="/img/logo.jpeg" alt="" class="card-img-top ml-auto m-3 rounded-circle w-50">
+                        </center>
+                        <form action="/signin" method="POST">
+                            <div class="form-group">
+                                <input id="usuario" type="text" name="username" class="form-control"
+                                    placeholder="Nombre de Usuario" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input id="contraseña" type="password" name="password" class="form-control"
+                                    placeholder="Contraseña">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" onclick="return form_signin();" class="btn btn-success btn-block">
+                                    Entrar
+                                </button>
+                            </div>
+
+
+                            </script>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
