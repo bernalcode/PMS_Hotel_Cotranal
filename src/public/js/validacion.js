@@ -42,6 +42,8 @@ ResetPassword = async () => {
 
 };
 
+
+// REGRESAR A LA PAGINA ANTERIOR
 atras = () => {
     window.history.back();
     return true;
