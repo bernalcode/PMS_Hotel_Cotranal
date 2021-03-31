@@ -1,5 +1,5 @@
 
-
+// VALIDACION DE INGRESO AL PMS
 form_signin = () => {
     var user = document.getElementById("usuario").value;
     var pass = document.getElementById("contraseña").value;
@@ -22,6 +22,7 @@ form_signin = () => {
     return false;
 };
 
+// BORRAR USUARIO DEL PMS
 BorrarUserPms = () => {
 
     Swal.fire(
@@ -33,6 +34,8 @@ BorrarUserPms = () => {
     return false;
 };
 
+
+// RESETEAR PASSWORD DE USUARIO : "usuario123"
 ResetPassword = async () => {
 
 
