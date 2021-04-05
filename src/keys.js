@@ -6,4 +6,4 @@ module.exports = {
         password: '@root234',
         database: 'pms_hotel'
     }
-};
+};  

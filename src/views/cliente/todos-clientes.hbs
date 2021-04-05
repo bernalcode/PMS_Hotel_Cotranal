@@ -3,37 +3,35 @@
 
 {{!-- {{{body}}} --}}
 
-<div id="jan">
-
-    <div class="container m-3 mx-auto bg-info">
-        <div class="row text-center p-2">
-            <div class="col-2">
-                <h5>Nombre</h5>
-            </div>
-            <div class="col-2">
-                <h5>Apellido</h5>
-            </div>
-            <div class="col-2">
-                <h5>N. Documento</h5>
-            </div>
-            <div class="col-2">
-                <h5>Celular</h5>
-            </div>
-            <div class="col-2">
-                <h5>Correo</h5>
-            </div>
-            <div class="col-2">
-                <h5>Ver</h5>
-            </div>
+<div class="container m-3 mx-auto bg-info" id="div-uno">
+    <div class="row text-center p-2">
+        <div class="col-2">
+            <h5>Nombre</h5>
+        </div>
+        <div class="col-2">
+            <h5>Apellido</h5>
+        </div>
+        <div class="col-2">
+            <h5>N. Documento</h5>
+        </div>
+        <div class="col-2">
+            <h5>Celular</h5>
+        </div>
+        <div class="col-2">
+            <h5>Correo</h5>
+        </div>
+        <div class="col-2">
+            <h5>Ver</h5>
         </div>
     </div>
+</div>
 
-
+<div id="jan">
     {{#each clientes}}
-    <div class="container mx-auto  m-2">
+    <div class="container mx-auto  m-2" id="div-dos">
         <div class="row text-center">
             <div class="col-2">
-                <h6>{{ nombre }}</h6>
+                <h6 id="nombre-lll">{{ nombre }}</h6>
             </div>
             <div class="col-2">
                 <h6>{{ apellido }}</h6>
@@ -54,5 +52,4 @@
         <div class="dropdown-divider" style="border-color: black;"></div>
     </div>
     {{/each}}
-
 </div>

@@ -1,3 +1,88 @@
+api = (search) => {
+    var entrada = search.value
+    
+    function render(data) {
+        
+        for (let i = 0; i < data.length; i++) {
+            let dato = data[i];
+            dato.bool = false;
+        }
+
+        data.map(function (x) {
+            window['ar' + x.id] = [x.nombre, x.apellido, x.celular, x.numero_documento, x.correo];
+            if (entrada == window['ar' + x.id][0]) {
+                x.bool = true
+            }
+
+            if (entrada == window['ar' + x.id][1]) {
+                x.bool = true
+            }
+
+            if (entrada == window['ar' + x.id][2]) {
+                x.bool = true
+            }
+
+            if (entrada == window['ar' + x.id][3]) {
+                x.bool = true
+            }
+
+            if (entrada == window['ar' + x.id][4]) {
+                x.bool = true
+            }
+        })
+        
+        var divs = [];
+        
+        for (var a = 0; a < data.length; a++) {
+            if (data[a].bool == true ) {
+                var jan = document.getElementById("jan")
+                
+                jan.innerHTML = "";
+                
+                var newDiv = document.createElement("div")
+                newDiv.setAttribute("class", `container mx-auto  m-2`);
+                newDiv.setAttribute("id", `${data[a].id}`);
+                newDiv.innerHTML = ` <div class="row text-center">
+                                        <div class="col-2">
+                                            <h6 id="nombre-lll">${data[a].nombre}</h6>
+                                        </div>
+                                        <div class="col-2">
+                                            <h6>${data[a].apellido}</h6>
+                                        </div>
+                                        <div class="col-2">
+                                            <h6>${data[a].numero_documento}</h6>
+                                        </div>
+                                        <div class="col-2">
+                                            <h6>${data[a].celular}</h6>
+                                        </div>
+                                        <div class="col-2">
+                                            <h6>${data[a].correo}</h6>
+                                        </div>
+                                        <div class="col-2">
+                                            <a href="/pms/ver-cliente/${data[a].id}">Ver</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider" style="border-color: black;"></div>`;
+                                    
+                divs.push(newDiv);
+            }
+            
+            divs.map(function(e) {
+                var jan = document.getElementById("jan");
+                jan.append(e);
+            })
+        }
+    };
+
+
+
+    fetch('http://localhost:4000/pms/fetch')
+        .then(response => response.json())
+        .then(data => { render(data) })
+
+
+
+};
 
 // VALIDACION DE INGRESO AL PMS
 form_signin = () => {

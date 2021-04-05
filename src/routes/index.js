@@ -2,11 +2,13 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 const sql = require('../database');
+const fetch = require('node-fetch');
 
 // INICIO 
 
 
 router.get('/', (req, res) => {
+    
     res.render('index.htm', { title: '  Hotel Cotranal Plaza' });
 
 });
