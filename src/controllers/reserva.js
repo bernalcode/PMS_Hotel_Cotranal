@@ -3,6 +3,11 @@ const sql = require('../database');
 
 
 module.exports = {
+    // BUSCAR REAL TIME 
+    async buscar_real_time(req, res) {
+        var db = await sql.query('SELECT numero_habitacion, nombre, apellido, numero_documento, id_reserva FROM habitacion, cliente LEFT OUTER JOIN nueva_reserva ON cliente.id = nueva_reserva.id_cliente where nueva_reserva.id_habitacion = habitacion.id_habitacion ORDER BY id_reserva DESC');
+        res.json(db);
+    },
 
 
     // PARQUEADERO CARROS  [GET]
@@ -70,7 +75,7 @@ module.exports = {
 
     // VER TODAS LA RESERVAS [GET]
     async allReserve(req, res) {
-        const datos = await sql.query('SELECT numero_habitacion, nombre, apellido, numero_documento, id_reserva FROM habitacion, cliente LEFT OUTER JOIN nueva_reserva ON cliente.id = nueva_reserva.id_cliente where nueva_reserva.id_habitacion = habitacion.id_habitacion;');
+        const datos = await sql.query('SELECT numero_habitacion, nombre, apellido, numero_documento, id_reserva FROM habitacion, cliente LEFT OUTER JOIN nueva_reserva ON cliente.id = nueva_reserva.id_cliente where nueva_reserva.id_habitacion = habitacion.id_habitacion ORDER BY id_reserva DESC');
         res.render('reserva/todas-reservas.hbs', { datos });
     },
 

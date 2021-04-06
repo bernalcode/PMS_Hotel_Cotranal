@@ -2,50 +2,56 @@
     <div class="row">
         <div class="col-md-4">
             <h6><strong>Buscar:</strong></h6>
-            <div class="card text-center" style="background-color: rgb(186, 201, 250);">
-                
+            <div id="card-buscar" class="card text-center" style="background-color: rgb(186, 201, 250);">
+
                 <div class="card-body">
-                    <form action="/pms/tipo-habitacion" method="POST">                        
-                            <input type="search" name="busqueda" class="form-control" placeholder="Escribe tu Busqueda..." autofocus>                        
+                    <form> 
+                        <input 
+                        oninput="buscar_reservas(this);"
+                        type="search" 
+                        name="busqueda" class="form-control" placeholder="Escribe tu Busqueda..."
+                            autofocus>
                     </form>
                 </div>
+                
             </div>
         </div>
         <div class="col-md-4 ml-auto" id="nuevo-cliente">
             <a href="/pms/reserva" class="btn btn-warning btn-block" style="color: black;"><em>Nueva Reserva</em></a>
         </div>
     </div>
-</div> 
+</div>
+</div>
 
+<div class="container m-4 mx-auto row text-center m-2 justify-content-center align-items-center bg-info"
+    style="border-radius: 0.5em;">
+    <div class="col-md-2 ">
+        <h5 style="color: white;">Habitacion</h5>
+    </div>
+    <div class="col-md-3  p-2">
+        <h5 style="color: white;">Nombre</h5>
+    </div>
+    <div class="col-md-3 ">
+        <h5 style="color: white;">Documento</h5>
+    </div>
+
+    <div class="col-md-2 ">
+        <h5 style="color: white;">Reserva</h5>
+    </div>
+    <div class="col-md-2 ">
+        <h5 style="color: white;">Parking</h5>
+    </div>
 
 </div>
-<div class="container p-4 m-4 mx-auto" id="jan">
-    <div class="row text-center m-2 justify-content-center align-items-center bg-info" style="border-radius: 0.5em;">
-        <div class="col-md-2 ">
-            <h5 style="color: white;">Habitacion</h5>
-        </div>
-        <div class="col-md-3  p-2">
-            <h5 style="color: white;">Nombre</h5>
-        </div>
-        <div class="col-md-3 ">
-            <h5 style="color: white;">Documento</h5>
-        </div>
+<div class="container p-4 m-4 mx-auto" id="jan_reserva">
 
-        <div class="col-md-2 ">
-            <h5 style="color: white;">Reserva</h5>
-        </div>
-        <div class="col-md-2 ">
-            <h5 style="color: white;">Parking</h5>
-        </div>
-
-    </div>
     {{#each datos}}
     <div class="row text-center m-1">
         <div class="col-md-2  ">
             <h6 style="color: white;">{{numero_habitacion}}</h6>
         </div>
         <div class="col-md-3 ">
-            <h6 style="color: white;">{{nombre}}{{apellido}}</h6> 
+            <h6 style="color: white;">{{nombre}} {{apellido}}</h6>
         </div>
         <div class="col-md-3 ">
             <h6 style="color: white;">{{numero_documento}}</h6>

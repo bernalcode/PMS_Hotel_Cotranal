@@ -8,6 +8,18 @@ html, body {
     overflow: auto;
 }
 
+#jan_reserva {
+    
+    height: 400px;
+    overflow: auto;
+}
+
+#jan_reserva_web {
+    
+    height: 400px;
+    overflow: auto;
+}
+
 #tipos {
     
     overflow: auto;

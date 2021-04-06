@@ -3,15 +3,15 @@ const sql = require('../database');
 
 
 module.exports = {
-    // BUSCAR REAL TIME
+    // BUSCAR REAL TIME 
     async buscar_real_time(req, res) {
-        var db = await sql.query('SELECT * FROM cliente');
+        var db = await sql.query('SELECT * FROM cliente ORDER BY id DESC');
         res.json(db);
     },
 
     // VER TODOS LOS CLIENTES REGISTRADOS EN LA BASE DE DATOS
     async getClientes(req, res) {
-        const clientes = await sql.query('SELECT * FROM cliente');
+        const clientes = await sql.query('SELECT * FROM cliente ORDER BY id DESC');
         res.render('cliente/todos-clientes.hbs', { clientes });
     },
 

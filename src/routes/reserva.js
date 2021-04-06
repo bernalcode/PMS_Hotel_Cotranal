@@ -5,7 +5,11 @@ const controllers = require('../controllers/reserva');
 const { isLoggedIn, isNotLoggedIn, isAdmin } = require('../lib/guardias');
 
 
-//RUTAS  << GET >> 
+//RUTAS  << GET >>
+
+router.route('/pms/fetch_reserva')
+    .get(isLoggedIn, controllers.buscar_real_time)
+
 router.route('/pms/ver_reserva_web/:id')
 
     .get(isLoggedIn, controllers.ver_reserva_web)
