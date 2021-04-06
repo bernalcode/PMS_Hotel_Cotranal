@@ -3,6 +3,11 @@ const sql = require('../database');
 
 
 module.exports = {
+    // BUSCAR REAL TIME
+    async buscar_real_time(req, res) {
+        var db = await sql.query('SELECT * FROM cliente');
+        res.json(db);
+    },
 
     // VER TODOS LOS CLIENTES REGISTRADOS EN LA BASE DE DATOS
     async getClientes(req, res) {
