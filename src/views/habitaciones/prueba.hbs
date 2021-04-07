@@ -2,12 +2,12 @@
     <div class="row">
         <div class="col-md-4">
             <h6><strong>Buscar:</strong></h6>
-            <div class="card text-center" style="background-color: rgb(186, 201, 250);">
+            <div id="card_habitaciones" class="card text-center" style="background-color: rgb(186, 201, 250);">
 
                 <div class="card-body">
                     <form action="/pms/tipo-habitacion" method="POST">
-                        <input type="search" name="busqueda" class="form-control" placeholder="Escribe tu Busqueda..."
-                            autofocus>
+                        <input oninput="buscar_habitaciones(this);" type="search" name="busqueda" class="form-control"
+                            placeholder="Escribe tu Busqueda..." autofocus>
                     </form>
                 </div>
             </div>
@@ -17,29 +17,32 @@
         </div>
     </div>
 </div>
-<div class="container p-4 m-4 mx-auto" id="jan">
-    <div class="row text-center m-2 justify-content-center align-items-center bg-info">
-        <div class="col-md-2  p-2">
-            <h5>numero</h5>
-        </div>
-        <div class="col-md-2 ">
-            <h5>descripcion</h5>
-        </div>
-        <div class="col-md-2 ">
-            <h5>precio</h5>
-        </div>
-        <div class="col-md-2 ">
-            <h5>Ocu/Desoc</h5>
-        </div>
-        <div class="col-md-2 ">
-            <h5>Estado</h5>
-        </div>
-        <div class="col-md-2 ">
-            <h5>+ Detalles</h5>
-        </div>
-
-
+<div class="container mx-auto row text-center m-2 p-1 justify-content-center align-items-center bg-info">
+    <div class="col-md-2  p-2">
+        <h5>numero</h5>
     </div>
+    <div class="col-md-2 ">
+        <h5>descripcion</h5>
+    </div>
+    <div class="col-md-2 ">
+        <h5>precio</h5>
+    </div>
+    <div class="col-md-2 ">
+        <h5>Ocu/Desoc</h5>
+    </div>
+    <div class="col-md-2 ">
+        <h5>Estado</h5>
+    </div>
+    <div class="col-md-2 ">
+        <h5>+ Detalles</h5>
+    </div>
+</div>
+{{#each habitacion}}
+    <div id="bucle" style="display: none;">
+        <div id="h{{numero_habitacion}}">{{persona}}</div>  
+    </div>
+{{/each}}
+<div class="container p-4 m-4 mx-auto" id="jan_habitaciones">
     {{#each habitacion}}
     <div class="row text-center m-2 justify-content-center align-items-center">
         <div class="col-md-2  p-2">
@@ -53,11 +56,11 @@
         </div>
         {{#if persona }}
         <div class="col-md-2 ">
-            <h6 style="color: red;">OCUPADA</h6>
+            <h6 style="color: red;" id="ocupada">OCUPADA</h6>
         </div>
         {{else}}
         <div class="col-md-2 ">
-            <h6 style="color:rgb(248, 252, 6)">Desocupada</h6>
+            <h6 style="color:rgb(248, 252, 6)" id="desocupada">Desocupada</h6>
         </div>
         {{/if}}
 

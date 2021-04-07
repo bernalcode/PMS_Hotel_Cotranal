@@ -12,6 +12,15 @@ const router = express.Router();
 
 // -- ENRUTADOR --
 
+//--------------- BUSCADOR HABITACIONES 'REAL-TIME' ------------
+
+router.route('/pms/fetch_habitaciones')
+
+    .get(isLoggedIn, controllers.buscar_habitaciones)
+
+
+
+//----------------------------------------------
 
 //--------------- NUEVA HABITACION ------------
 

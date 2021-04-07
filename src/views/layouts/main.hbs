@@ -7,6 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PMS - Hotel Cotranal</title>
     {{!-- GOOGLE FONTS --}}
+    <script  src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script>
+        // compile the template
+        var i = 'Hello, world!';
+        
+        var tpl = `<b>${i}</b>`
+        var template = Handlebars.compile(tpl);
+        // execute the compiled template and print the output to the console
+        console.error(template());
+    </script>
+    
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
 
@@ -60,8 +71,10 @@
         <script src="/js/help.js"></script>
 
         {{!-- BUSCADOR REAL-TIME --}}
-        <script src="/js/buscar-real-time/buscar_clientes.js"></script> 
+        <script src="/js/buscar-real-time/buscar_clientes.js"></script>
         <script src="/js/buscar-real-time/buscar_reservas.js"></script>
+        <script src="/js/buscar-real-time/buscar_reservas_web.js"></script>
+        <script src="/js/buscar-real-time/buscar_habitaciones.js"></script>
 
 
 

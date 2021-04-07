@@ -4,6 +4,12 @@ const sql = require('../database');
 
 module.exports = {
 
+    async buscar_habitaciones(req, res) {
+        var db = await sql.query('SELECT id_habitacion, numero_habitacion, estado, descripcion, precio_habitacion FROM habitacion, tipo_habitacion WHERE tipo_habitacion = id_tipo_habitacion ORDER BY numero_habitacion;')
+
+        res.json(db);
+    },
+
     //EDITAR HABITACION SI ESTA OCUPADA [GET]
     editOccupiedRoom(req, res) {
         res.render('habitaciones/habitacion-ocupada.hbs');
@@ -35,7 +41,9 @@ module.exports = {
 
     // VER TODAS LAS HABITACIONES DE LA BASE DE DATOS [GET]
     async allRooms(req, res) {
+        
         var habitacion = await sql.query('SELECT id_habitacion, numero_habitacion, estado, descripcion, precio_habitacion FROM habitacion, tipo_habitacion WHERE tipo_habitacion = id_tipo_habitacion ORDER BY numero_habitacion;');
+        
         for (let i = 0; i < habitacion.length; i++) {
             habitacion[i].persona = false;
         };
@@ -48,6 +56,8 @@ module.exports = {
                 };
             };
         };
+        console.error('desde el Backend!!! ', habitacion);
+        var r = null;
         res.render('habitaciones/prueba.hbs', { habitacion });
     },
 

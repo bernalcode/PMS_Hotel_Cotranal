@@ -4,6 +4,11 @@ const sql = require('../database');
 
 module.exports = {
     // BUSCAR REAL TIME 
+    async buscar_reservas_web(req, res) {
+        var db = await sql.query('SELECT * FROM reserva_web ORDER BY id DESC');
+        res.json(db);
+    },
+
     async buscar_real_time(req, res) {
         var db = await sql.query('SELECT numero_habitacion, nombre, apellido, numero_documento, id_reserva FROM habitacion, cliente LEFT OUTER JOIN nueva_reserva ON cliente.id = nueva_reserva.id_cliente where nueva_reserva.id_habitacion = habitacion.id_habitacion ORDER BY id_reserva DESC');
         res.json(db);
