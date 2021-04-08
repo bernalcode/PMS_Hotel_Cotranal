@@ -3,7 +3,8 @@ const sql = require('../database');
 
 
 module.exports = {
-    // BUSCAR REAL TIME 
+    
+    // BUSCAR REAL TIME ----------------------------------------------------------
     async buscar_reservas_web(req, res) {
         var db = await sql.query('SELECT * FROM reserva_web ORDER BY id DESC');
         res.json(db);
@@ -13,22 +14,27 @@ module.exports = {
         var db = await sql.query('SELECT numero_habitacion, nombre, apellido, numero_documento, id_reserva FROM habitacion, cliente LEFT OUTER JOIN nueva_reserva ON cliente.id = nueva_reserva.id_cliente where nueva_reserva.id_habitacion = habitacion.id_habitacion ORDER BY id_reserva DESC');
         res.json(db);
     },
+    //----------------------------------------------------------
 
 
-    // PARQUEADERO CARROS  [GET]
+
+
+    // PARQUEADERO CARROS  [GET] ----------------------------------------------------------
     park(req, res) {
         res.render('reserva/park.hbs')
     },
 
-    // BORRAR LA RESERVA  [GET]
+    // BORRAR LA RESERVA  [GET] ----------------------------------------------------------
     async deleteReserve(req, res) {
         const { id } = req.params;
         await sql.query('DELETE FROM nueva_reserva WHERE id_reserva = ?', [id]);
         req.flash('success', 'Reserva Eliminada con Exito');
         res.redirect('/pms/todas-reservas');
-    },
+    },//_________________________________________________________________________________
 
-    // CREAR NUEVA RESERVA  [GET]
+
+
+    // CREAR NUEVA RESERVA  [GET] ----------------------------------------------------------
     async createReserve(req, res) {
         const habitacion = await sql.query('SELECT * FROM habitacion;')
         const cliente = await sql.query('SELECT id, nombre, apellido FROM cliente;');
@@ -76,15 +82,19 @@ module.exports = {
                 res.render('reserva/reserva.hbs', { habitacion, cliente, newHabita });
             };
         }
-    },
+    },//_________________________________________________________________________________
 
-    // VER TODAS LA RESERVAS [GET]
+
+
+    // VER TODAS LA RESERVAS [GET] ----------------------------------------------------------
     async allReserve(req, res) {
         const datos = await sql.query('SELECT numero_habitacion, nombre, apellido, numero_documento, id_reserva FROM habitacion, cliente LEFT OUTER JOIN nueva_reserva ON cliente.id = nueva_reserva.id_cliente where nueva_reserva.id_habitacion = habitacion.id_habitacion ORDER BY id_reserva DESC');
         res.render('reserva/todas-reservas.hbs', { datos });
-    },
+    },//_________________________________________________________________________________
 
-    // VER UNA RESERVA ESPECIFICA [GET]
+
+
+    // VER UNA RESERVA ESPECIFICA [GET] ----------------------------------------------------------
     async oneReserve(req, res) {
         const { id } = req.params;
         const katos = await sql.query('SELECT id, numero_habitacion, nombre, apellido, id_reserva, check_in, check_out, adultos, ninos, observacion FROM habitacion, cliente LEFT OUTER JOIN nueva_reserva ON cliente.id = nueva_reserva.id_cliente where nueva_reserva.id_habitacion = habitacion.id_habitacion AND id_reserva = ?', [id]);
@@ -118,9 +128,11 @@ module.exports = {
         };
         const fecha_out = fech_d_ou + '-' + fech_m_ou + '-' + fech_y_ou;
         res.render('reserva/ver-reserva', { kato, fecha_in, fecha_out, id });
-    },
+    },//_________________________________________________________________________________
 
-    // GUARDAR OBSERVACIONES DEL CLIENTE/RESERVA [POST]
+
+
+    // GUARDAR OBSERVACIONES DEL CLIENTE/RESERVA [POST] ----------------------------------------------------------
     async observations(req, res) {
         const { id } = req.params;
         const { observaciones } = req.body;
@@ -130,9 +142,11 @@ module.exports = {
         };
         await sql.query('UPDATE nueva_reserva SET ? WHERE id_reserva = ?', [dato, id]);
         res.redirect('/pms/todas-reservas');
-    },
+    },//_________________________________________________________________________________
 
-    // MANDAR DATOS DE LA NUEVA RESERVA Y GUARDARLOS  [POST]
+
+
+    // MANDAR DATOS DE LA NUEVA RESERVA Y GUARDARLOS  [POST] ----------------------------------------------------------
     async saveReserve(req, res) {
         const { id_cliente, id_habitacion, check_in, check_out, adultos, ninos } = req.body;
         const datos = {
@@ -149,9 +163,12 @@ module.exports = {
         await sql.query('INSERT INTO nueva_reserva SET ?', [datos])
         req.flash('success', 'Reserva Agregada Satisfactoriamente');
         res.redirect('/pms/todas-reservas');
-    },
+    },//_________________________________________________________________________________
 
-    //RESERVAS ENVIADAS DESDE LA PAGINA
+
+
+    //RESERVAS ENVIADAS DESDE LA PAGINA ----------------------------------------------------------
+
     async reserva_Web(req, res) { 
         const reserva_web = await sql.query('SELECT * FROM reserva_web ORDER BY id DESC');
 
@@ -186,23 +203,21 @@ module.exports = {
             reserva_web[i].check_out = fecha_out;            
         };
 
-
-
-
-
         res.render('reserva/reserva_web.hbs', { reserva_web });
-    },
+    },//_________________________________________________________________________________
+
+
+
+    // VER UNA UNICA RESERVA ENVIADA DESDE LA PAGINA DEL HOTEL ------------------------------
 
     async ver_reserva_web(req, res) {
-        var {id} = req.params;
-        console.log(id ,'= req.params');
-        console.log('%%&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%%%&&&&&&&&&&', id);
-        var dbb = await sql.query('SELECT * FROM reserva_web WHERE id = ?',[id]);
-        console.log('#$#$33',dbb);
-        var db = dbb[0];
-        console.log('$#$#$#23',db);
 
-        ///////////////////// FORMATEAR FECHA CHECK_OUT //////////////////
+        var {id} = req.params;
+        var dbb = await sql.query('SELECT * FROM reserva_web WHERE id = ?',[id]);
+        var db = dbb[0];
+        
+
+        ///////////////////// FORMATEAR FECHA CHECK_IN //////////////////
         var chein = db.check_in;
         var fech_y_in = chein.getFullYear();
         var fech_m_in = chein.getMonth() + 1;
@@ -241,4 +256,4 @@ module.exports = {
 
 
 
-}
+} // <-- fin del Module.exports ------------------------------

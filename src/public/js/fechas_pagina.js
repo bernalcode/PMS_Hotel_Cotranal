@@ -11,18 +11,18 @@ if (fech_d_in < 10) {
 };
 var fecha_in = fech_y_in + '-' + fech_m_in + '-' + fech_d_in;
 
-var checkin = document.getElementById("fechaMin");
+var fechain_pagina = document.getElementById("fechain_pagina");
+fechain_pagina.setAttribute("min", `${fecha_in}`);
 
-checkin.min = fecha_in;
 
 
 
 // CAPTURAR EL EVENTO "CHANGE" Y TRABAJAR CON LAS FECHAS
-checkin.addEventListener("change", (event) => {
+fechain_pagina.addEventListener("change", (event) => {
 
 
     // TOMAR LA FECHA DEL CHECK_IN
-    var fecha_checkout = checkin.value;
+    var fecha_checkout = fechain_pagina.value;
     //  CONVERTIR EL STRING: "AAAA-MM-DD" EN UN ARRAY: ["AAAA", "MM", "DD"]
     var array_fecha = fecha_checkout.split("-");
 
@@ -170,8 +170,10 @@ checkin.addEventListener("change", (event) => {
     // SE UN EN UN SOLO STRING EL DIA EL MES Y EL AÑO PARA PASARLO AL CHECK_OUT
     var fecha_final_out = array_fecha[0] + "-" + array_fecha[1] + "-" + array_fecha[2];
     // SE COLOCA LA FECHA YA MODIFICADA EN EL CAMPO DEL CHACK_OUT
-    
-    document.getElementById("fechaMax").min = fecha_final_out;
+
+    //document.getElementById("fechaout_pagina").min = fecha_final_out;
+    var fechaout_pagina = document.getElementById("fechaout_pagina");
+    fechaout_pagina.setAttribute("min", `${fecha_final_out}`);
 });
 
 
@@ -198,7 +200,9 @@ if (fech_d_in < 10) {
 };
 var fecha_in = fech_y_in + '-' + fech_m_in + '-' + fech_d_in;
 
-document.getElementById("fechaMax").min = fecha_in;
+//document.getElementById("fechaMax").min = fecha_in;
+var fechaout_pagina = document.getElementById("fechaout_pagina");
+fechaout_pagina.setAttribute("min", `${fecha_in}`);
 
 
 
