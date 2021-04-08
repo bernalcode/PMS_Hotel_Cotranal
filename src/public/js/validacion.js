@@ -1,3 +1,54 @@
+//MOSTRAR CONTRASEÑA AL CAMBIARLA 
+mostrar_pass = (evt) => {
+    evt.preventDefault();
+    var change1 = document.getElementById("change1");
+    var change2 = document.getElementById("change2");
+    change1.setAttribute("type", "text");
+    change2.setAttribute("type", "text");
+    
+};
+
+
+
+//OCULTAR CONTRASEÑA AL CAMBIARLA 
+ocultar_pass = (evt) => {
+    evt.preventDefault();
+    var change1 = document.getElementById("change1");
+    var change2 = document.getElementById("change2");
+    change1.setAttribute("type", "password");
+    change2.setAttribute("type", "password");
+    
+};
+
+//CONFIRMAR CAMBIO DE CONTRASEÑA
+confirmar_pass = (d) => {
+    console.warn(d);
+    return false;
+};
+
+submit_pass = () => {
+    
+    var pass1 = document.getElementById("change1")
+    var pass2 = document.getElementById("change2")
+
+    var p1 = pass1.value;
+    var p2 = pass2.value;
+
+    if (p1 === p2) {
+        return true;
+    } else {
+        Swal.fire(
+            'Las Contraseñas no coinciden ',
+            'Intentalo de Nuevo ! ...',
+            'error'
+        );
+        return false;
+    }
+
+};
+
+
+
 // VALIDACION DE INGRESO AL PMS
 form_signin = () => {
     var user = document.getElementById("usuario").value;

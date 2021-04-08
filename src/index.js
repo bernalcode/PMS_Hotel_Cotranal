@@ -105,6 +105,7 @@ app.use(require('./routes/autenticacion'));
 app.use(require('./routes/admin'));
 app.use('/pms',require('./routes/signin'));
 app.use(require('./routes/logout'));
+app.use(require('./routes/turno'));
 
 
 

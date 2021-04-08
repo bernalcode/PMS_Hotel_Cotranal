@@ -7,17 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PMS - Hotel Cotranal</title>
     {{!-- GOOGLE FONTS --}}
-    <script  src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+    <h1 id="fecha_hoy"></h1>
     <script>
-        // compile the template
-        var i = 'Hello, world!';
-        
-        var tpl = `<b>${i}</b>`
-        var template = Handlebars.compile(tpl);
-        // execute the compiled template and print the output to the console
-        console.error(template());
+
+        function mueveReloj() {
+            momentoActual = new Date()
+            hora = momentoActual.getHours()
+            minuto = momentoActual.getMinutes()
+            segundo = momentoActual.getSeconds()
+
+            horaImprimible = hora + " : " + minuto + " : " + segundo
+
+            document.form_reloj.reloj.value = horaImprimible
+
+            if (horaImprimible == '18 : 43 : 0') {
+
+                // AQUI SE DESBLOQUEA LA HABITACION
+                Swal.fire(
+                    'se cumplio la hora ',
+                    'deseas continuar ??? ...',
+                    'error'
+                );
+            }
+
+            setTimeout("mueveReloj()", 1000)
+        }
+
+
     </script>
-    
+    <form name="form_reloj" class="form-group">
+        <input type="text" name="reloj" size="10">
+    </form>
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
 
@@ -43,7 +66,7 @@
 
 <body style="background-color: rgb(204, 215, 250);"> --}}
 
-    <body>
+    <body onload="mueveReloj();">
 
         {{> navegacion }}
         {{> message_flash }}
