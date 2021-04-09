@@ -1,5 +1,6 @@
 
 const sql = require('../database');
+const sql_copia = require('../database_copia');
 
 
 module.exports = {
@@ -22,6 +23,8 @@ module.exports = {
 
     // REGISTRAR CLIENTE EN LA BASE DE DATOS
     async postSignupClient(req, res) {
+        var {username} = req.user;
+        var usuario_pms = username;
         const { nombre,
             apellido,
             sexo,
@@ -33,6 +36,7 @@ module.exports = {
             celular,
             correo
         } = req.body;
+
         const datosCliente = {
             nombre,
             apellido,
@@ -43,13 +47,16 @@ module.exports = {
             fecha_expedicion,
             lugar_expedicion,
             celular,
-            correo
+            correo,
+            usuario_pms
         };
-        await sql.query('INSERT INTO cliente SET ?', [datosCliente]);
+        var volvio = await sql.query('INSERT INTO cliente SET ?', [datosCliente]);
+        var id = volvio.insertId;
+        await sql_copia.query('INSERT INTO pms_hotel_copia.cliente SELECT * FROM pms_hotel.cliente WHERE id = ?;', [id]);
         req.flash('success', 'Cliente Agregado Satisfactoriamente');
         res.redirect('/pms/clientes');
     },
-    
+
     // VER TODOS LOS DATOS DEL CLIENTE
     async seeClient(req, res) {
         const { id } = req.params;
@@ -72,27 +79,18 @@ module.exports = {
 
     // BORRAR EL CLIENTE DE LA BASE DE DATOS
     async deleteClient(req, res) {
-        const { id } = req.params;
-        await sql.query('DELETE FROM cliente WHERE id = ?', [id]);
-        req.flash('success', 'Cliente Borrado con Exito');
-        res.redirect('/pms/clientes');
-    },
+        var { idd } = req.params;
 
-    // EDITAR DATOS DEL CLIENTE 
-    async editarCliente (req, res) {
-        const { id } = req.params;
-            const { nombre,
-                apellido,
-                celular,
-                sexo,
-                correo,
-                tipo_documento,
-                fecha_expedicion,
-                lugar_expedicion,
-                numero_documento,
-                nacionalidad
-            } = req.body;
-            const datos = {
+        var volvio = await sql.query('DELETE FROM cliente WHERE id = ?', [idd]);
+        if (volvio) {
+
+
+            var llego = await sql_copia.query('SELECT * FROM cliente WHERE id = ?', [idd]);
+
+
+            var sett = llego[0]
+            const {
+                id,
                 nombre,
                 apellido,
                 sexo,
@@ -103,10 +101,85 @@ module.exports = {
                 lugar_expedicion,
                 celular,
                 correo
-            };
-            await sql.query('UPDATE cliente SET ? WHERE id = ?', [datos, id]);
-            req.flash('success', 'Cliente Editado con Exito');
-            res.redirect('/pms/clientes');
+            } = sett;
+            await sql_copia.query(
+                'INSERT INTO cliente_delete (id_delete, nombre, apellido, sexo, nacionalidad, tipo_documento, numero_documento, fecha_expedicion, lugar_expedicion, celular, correo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+                id,
+                nombre,
+                apellido,
+                sexo,
+                nacionalidad,
+                tipo_documento,
+                numero_documento,
+                fecha_expedicion,
+                lugar_expedicion,
+                celular,
+                correo
+            ]);
+
+
+
+
+
+        }
+
+
+
+
+
+
+        req.flash('success', 'Cliente Borrado con Exito');
+        res.redirect('/pms/clientes');
+    },
+
+    // EDITAR DATOS DEL CLIENTE 
+    async editarCliente(req, res) {
+        const { id } = req.params;
+        const { nombre,
+            apellido,
+            celular,
+            sexo,
+            correo,
+            tipo_documento,
+            fecha_expedicion,
+            lugar_expedicion,
+            numero_documento,
+            nacionalidad
+        } = req.body;
+
+        const datos = {
+            nombre,
+            apellido,
+            sexo,
+            nacionalidad,
+            tipo_documento,
+            numero_documento,
+            fecha_expedicion,
+            lugar_expedicion,
+            celular,
+            correo
+        };
+
+        var volvio = await sql.query('UPDATE cliente SET ? WHERE id = ?', [datos, id]);
+        if (volvio) {
+            await sql_copia.query(
+                'INSERT INTO cliente_updates (id_delete, nombre, apellido, sexo, nacionalidad, tipo_documento, numero_documento, fecha_expedicion, lugar_expedicion, celular, correo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+                id,
+                nombre,
+                apellido,
+                sexo,
+                nacionalidad,
+                tipo_documento,
+                numero_documento,
+                fecha_expedicion,
+                lugar_expedicion,
+                celular,
+                correo
+            ]);
+        }
+        //await sql_copia.query('INSERT INTO cliente_actualizado SET ?', [datos_copia]);
+        req.flash('success', 'Cliente Editado con Exito');
+        res.redirect('/pms/clientes');
     }
 
 

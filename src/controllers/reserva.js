@@ -20,9 +20,43 @@ module.exports = {
 
 
     // PARQUEADERO CARROS  [GET] ----------------------------------------------------------
-    park(req, res) {
-        res.render('reserva/park.hbs')
-    },
+    async parkGet(req, res) {
+        const {id} = req.params;
+        const park = await sql.query('SELECT * FROM parking WHERE id_reserva = ?', [id]);
+        
+        if (park.length >  0) {
+            const {placa} = park[0];
+            console.error('ya tiene parqueadero');
+            res.render('reserva/park_true.hbs', {placa});
+
+        } else {
+            
+            console.error('no tiene parqueadero registrado');
+            res.render('reserva/park_false.hbs', {id});
+        }
+        
+    },//_________________________________________________________________________________
+
+    
+    // PARQUEADERO CARROS  [POST] ----------------------------------------------------------
+    async parkPost(req, res) {
+        const {park} = req.body;
+        const placa = park;
+        const {id} = req.params;
+        const id_reserva = id;
+        const {username} = req.user;
+        const db = {
+            placa,
+            id_reserva,
+            username
+        };
+        
+        await sql.query('INSERT INTO parking SET ?', [db]);
+        req.flash('success', 'Parqueadero regustrado con Exito!');
+        res.redirect('/pms/todas-reservas');
+    },//_________________________________________________________________________________
+
+
 
     // BORRAR LA RESERVA  [GET] ----------------------------------------------------------
     async deleteReserve(req, res) {
@@ -120,14 +154,16 @@ module.exports = {
         var fech_y_ou = cheou.getFullYear();
         var fech_m_ou = cheou.getMonth() + 1;
         var fech_d_ou = cheou.getDate();
+        var fech_d_ou_min = cheou.getDate() + 1;
         if (fech_m_ou < 10) {
             fech_m_ou = '0' + fech_m_ou;
         };
         if (fech_d_ou < 10) {
             fech_d_ou = '0' + fech_d_ou;
         };
-        const fecha_out = fech_d_ou + '-' + fech_m_ou + '-' + fech_y_ou;
-        res.render('reserva/ver-reserva', { kato, fecha_in, fecha_out, id });
+        const fecha_out = fech_y_ou + '-' + fech_m_ou + '-' + fech_d_ou;
+        const fecha_out_min = fech_y_ou + '-' + fech_m_ou + '-' + fech_d_ou_min;
+        res.render('reserva/ver-reserva', { kato, fecha_in, fecha_out, id, fecha_out_min });
     },//_________________________________________________________________________________
 
 
@@ -135,10 +171,11 @@ module.exports = {
     // GUARDAR OBSERVACIONES DEL CLIENTE/RESERVA [POST] ----------------------------------------------------------
     async observations(req, res) {
         const { id } = req.params;
-        const { observaciones } = req.body;
-        var observacion = observaciones;
+        const { observacion, check_out } = req.body;
+        
         const dato = {
-            observacion
+            observacion,
+            check_out
         };
         await sql.query('UPDATE nueva_reserva SET ? WHERE id_reserva = ?', [dato, id]);
         res.redirect('/pms/todas-reservas');

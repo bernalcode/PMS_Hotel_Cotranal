@@ -1,0 +1,25 @@
+<center><a href="/pms/todas-reservas"><--- Atras</a></center>
+<div class="container p-5">
+    <div class="container p-5">
+        <div class="row">
+            <div class="card mx-auto">
+                <div class="card-header text-center bg-secondary">
+                    <h6>Registrar Vehiculo</h6>
+                </div>
+                <div class="card-body">
+
+                    <form action="/pms/park/{{id}}" method="POST">
+                        <div class="form-group">
+                            <input name="park" type="text" maxlength="10" class="form-control" placeholder="Placa"> 
+                            <br>
+                            <button class="btn btn-success btn-block">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

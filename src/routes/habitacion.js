@@ -85,7 +85,7 @@ router.route('/pms/editar-habitacion-desocupada/:id')
 
 
 router.route('/pms/editar-habitacion/:id')
-    .post(isLoggedIn, controllers.editRoom);
+    .post(isLoggedIn, controllers.editRoom);  
 
 
 

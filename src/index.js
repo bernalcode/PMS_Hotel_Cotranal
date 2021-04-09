@@ -8,6 +8,7 @@ const exphbs = require('express-handlebars');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session');
 const { database } = require('./keys');
+const { database_copia } = require('./keys');
 const flash = require('connect-flash');
 const passport = require('passport');
 
@@ -60,6 +61,12 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: new MySQLStore(database)
+}));
+app.use(session({
+    secret: 'pmsHotel_copia',
+    resave: false,
+    saveUninitialized: false,
+    store: new MySQLStore(database_copia)
 }));
 app.use(flash());
 app.use(morgan('dev'));

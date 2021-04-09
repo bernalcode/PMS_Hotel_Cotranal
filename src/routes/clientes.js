@@ -33,7 +33,7 @@ router.route('/pms/ver-cliente/:id')
     .get(isLoggedIn, controllers.seeClient)
 
 
-router.route('/pms/borrar-cliente/:id')
+router.route('/pms/borrar-cliente/:idd')
 
     .get(isLoggedIn, controllers.deleteClient)
 

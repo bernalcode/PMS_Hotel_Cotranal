@@ -21,9 +21,14 @@ router.route('/pms/reserva_web')
     .get(isLoggedIn, controllers.reserva_Web)
 
 
-router.route('/pms/park')
+router.route('/pms/park/:id')
 
-    .get(isLoggedIn, controllers.park)
+    .get(isLoggedIn, controllers.parkGet)
+    .post(isLoggedIn, controllers.parkPost)
+
+
+//router.route('/pms/park/')
+
 
 
 router.route('/pms/borrar-reserva/:id')

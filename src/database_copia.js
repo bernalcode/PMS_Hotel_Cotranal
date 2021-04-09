@@ -1,12 +1,14 @@
 const mysql = require('mysql');
 const { promisify } = require('util');
-const { database } = require('./keys');
+const { database_copia } = require('./keys');
+const pool_copia = mysql.createPool(database_copia);
 
-const pool = mysql.createPool(database);
 
 
-// BASE DE DATOS PRINCIPAL ---------------------------------------------
-pool.getConnection((err, connection) => { 
+
+// BASE DE DATOS PARA LA AUDITORIA -------------------------------------------------
+
+pool_copia.getConnection((err, connection) => { 
     if (err) {
         if (err.code === 'PROTOCOL_CONNECTION_LOST') {
             console.error('DATABASE CONNECTION WAS CLOSED');
@@ -20,7 +22,7 @@ pool.getConnection((err, connection) => {
     }
 
     if (connection) connection.release();
-    console.log('Base de Datos Conectada');
+    console.log('COPIA de la Base de Datos Conectada !');
     return;
     
 });
@@ -28,12 +30,10 @@ pool.getConnection((err, connection) => {
 
 
 
-
-
 //Promisify Pool Querys
-pool.query = promisify(pool.query);
+
+pool_copia.query = promisify(pool_copia.query);
 
 
 
-
-module.exports = pool; 
+module.exports = pool_copia;

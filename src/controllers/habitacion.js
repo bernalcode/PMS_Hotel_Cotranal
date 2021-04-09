@@ -11,8 +11,12 @@ module.exports = {
     },
 
     //EDITAR HABITACION SI ESTA OCUPADA [GET]
-    editOccupiedRoom(req, res) {
-        res.render('habitaciones/habitacion-ocupada.hbs');
+    async editOccupiedRoom(req, res) {
+        const {id} = req.params;
+        var db = await sql.query('SELECT nombre, apellido, adultos, ninos, estado, check_in, check_out FROM cliente, nueva_reserva, habitacion WHERE habitacion.id_habitacion = ?', [id]);
+        var kato = db[0];
+        
+        res.render('habitaciones/habitacion-ocupada.hbs', {kato});
     },
 
     // BORRAR TIPO DE HABITACION [GET]
@@ -41,23 +45,38 @@ module.exports = {
 
     // VER TODAS LAS HABITACIONES DE LA BASE DE DATOS [GET]
     async allRooms(req, res) {
-        
+
         var habitacion = await sql.query('SELECT id_habitacion, numero_habitacion, estado, descripcion, precio_habitacion FROM habitacion, tipo_habitacion WHERE tipo_habitacion = id_tipo_habitacion ORDER BY numero_habitacion;');
-        
+
         for (let i = 0; i < habitacion.length; i++) {
             habitacion[i].persona = false;
         };
-        var datos = await sql.query('SELECT numero_habitacion, nombre, apellido, id_reserva FROM habitacion, cliente LEFT OUTER JOIN nueva_reserva ON cliente.id = nueva_reserva.id_cliente where nueva_reserva.id_habitacion = habitacion.id_habitacion;');
+
+        var datos = await sql.query('SELECT numero_habitacion, nombre, apellido, id_reserva, check_out FROM habitacion, cliente LEFT OUTER JOIN nueva_reserva ON cliente.id = nueva_reserva.id_cliente where nueva_reserva.id_habitacion = habitacion.id_habitacion;');
         for (var i = 0; i < habitacion.length; i++) {
             var num = habitacion[i].numero_habitacion;
             for (var j = 0; j < datos.length; j++) {
                 if (num == datos[j].numero_habitacion) {
-                    habitacion[i].persona = true;
+
+                    var chek_out = datos[j].check_out;
+                    var hoy = new Date();
+
+
+                    chek_out.setHours(0, 0, 0, 0);
+                    hoy.setHours(0, 0, 0, 0);
+
+
+                    if (chek_out >= hoy) {
+                        habitacion[i].persona = true; // true es ocupada
+
+                    } else {
+                        habitacion[i].persona = false; // false es desocupada
+                    }
+
                 };
             };
         };
-        console.error('desde el Backend!!! ', habitacion);
-        var r = null;
+        
         res.render('habitaciones/prueba.hbs', { habitacion });
     },
 
@@ -134,8 +153,8 @@ module.exports = {
                 var newTipo = tipo;
             };
         };
-        var esta = ['Limpia', 'En Limpieza', 'Mantenimien'];
-        if (dato.estado == 'Limpia' || dato.estado == 'En Limpieza' || dato.estado == 'Mantenimien') {
+        var esta = ['Limpia', 'En Limpieza', 'En Mantenimiento'];
+        if (dato.estado == 'Limpia' || dato.estado == 'En Limpieza' || dato.estado == 'En Mantenimiento') {
             var removeItemFromArr = (arr, item) => {
                 var i = arr.indexOf(item);
                 i !== -1 && arr.splice(i, 1);

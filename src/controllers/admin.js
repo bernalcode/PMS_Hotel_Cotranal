@@ -1,4 +1,5 @@
 const sql = require('../database');
+const sql_copia = require('../database_copia');
 const helpers = require('../lib/encriptacion');
 
 
@@ -9,6 +10,19 @@ module.exports = {
 
         res.render('admin/admin.hbs');
     },
+
+    // ADMIN AUDITORIA
+
+    admin_auditoria(req, res) {
+        res.render('admin/admin_auditoria.hbs');
+    },
+
+    async auditoria_clientes_creados(req, res) {
+      res.render('admin/auditoria/clientes_creados.hbs')
+    },
+
+
+
 
     // VER TODOS LOS USUARIOS DEL PMS REGISTRADOS
     async usersPms(req, res) {

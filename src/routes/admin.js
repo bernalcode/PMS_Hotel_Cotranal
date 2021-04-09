@@ -6,6 +6,17 @@ const { isLoggedIn, isNotLoggedIn, isAdmin } = require('../lib/guardias');
 
 
 //RUTAS <<GET>>
+router.route('/pms/admin_auditoria')
+
+    .get(isLoggedIn, isAdmin, controllers.admin_auditoria)
+
+
+router.route('/pms/admin_auditoria/clientes/creados')
+
+    .get(isLoggedIn, isAdmin, controllers.auditoria_clientes_creados);
+
+
+
 router.route('/pms/admin')
 
     .get(isLoggedIn, isAdmin, controllers.indexAdmin)
@@ -22,7 +33,7 @@ router.route('/pms/signup')
 
     .get(isLoggedIn, isAdmin, controllers.signupUsersPmsGet)
     .post(isLoggedIn, isAdmin, controllers.signupUsersPmsPost)
-    
+
 
 
 router.route('/pms/reset-password/:id')
@@ -30,9 +41,9 @@ router.route('/pms/reset-password/:id')
 
 
 
-    
-    
-    
+
+
+
 
 
 // RUTAS <<POST>>
@@ -40,4 +51,4 @@ router.route('/pms/reset-password/:id')
 
 
 
-module.exports = router; 
+module.exports = router;
