@@ -13,6 +13,12 @@ const { isLoggedIn, isNotLoggedIn, isAdmin } = require('../lib/guardias');
 // router.route('/pms/admin_reservas')
 //     .get(isLoggedIn, isAdmin, controllers.admin_reservas) 
 
+router.route('/pms/git')
+
+    .get(isLoggedIn, isAdmin, (req, res) => {
+        res.render('admin/git.hbs')
+    })
+
 router.route('/pms/admin_auditoria')
 
     .get(isLoggedIn, isAdmin, controllers.admin_auditoria)
