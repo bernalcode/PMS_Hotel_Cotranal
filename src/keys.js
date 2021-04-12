@@ -4,13 +4,13 @@ module.exports = {
         host: 'localhost',
         user: 'root',
         password: '@root234',
-        database: 'pms_hotel'
+        database: 'test_db'
     },
 
     database_copia: {
         host: 'localhost',
         user: 'root',
         password: '@root234',
-        database: 'pms_hotel_copia'
+        database: 'test_db'
     }
 };  
