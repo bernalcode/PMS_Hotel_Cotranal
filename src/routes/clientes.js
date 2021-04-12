@@ -10,6 +10,9 @@ const router = express.Router();
 
 
 // -- ENRUTADOR -- 
+router.route('/pms/fetch_audi/:fecha_ini/:fecha_fin')
+    .get(isLoggedIn, controllers.audi_clientes)
+
 
 router.route('/pms/fetch')
     .get(isLoggedIn, controllers.buscar_real_time)

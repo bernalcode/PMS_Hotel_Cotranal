@@ -6,6 +6,13 @@ const { isLoggedIn, isNotLoggedIn, isAdmin } = require('../lib/guardias');
 
 
 //RUTAS <<GET>>
+// router.route('/pms/fetch_admin_reservas/:fecha_ini/:fecha_fin')
+//     .get(isLoggedIn, controllers.traer_reservas)
+
+
+// router.route('/pms/admin_reservas')
+//     .get(isLoggedIn, isAdmin, controllers.admin_reservas) 
+
 router.route('/pms/admin_auditoria')
 
     .get(isLoggedIn, isAdmin, controllers.admin_auditoria)
@@ -14,6 +21,11 @@ router.route('/pms/admin_auditoria')
 router.route('/pms/admin_auditoria/clientes/creados')
 
     .get(isLoggedIn, isAdmin, controllers.auditoria_clientes_creados);
+
+
+router.route('/pms/admin_auditoria/reservas/creadas')
+
+    .get(isLoggedIn, isAdmin, controllers.auditoria_reservas_creadas);
 
 
 

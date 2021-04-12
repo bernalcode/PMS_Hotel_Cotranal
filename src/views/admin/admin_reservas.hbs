@@ -1,4 +1,4 @@
-<div class="container p-3">
+{{!-- <div class="container p-3">
     <div class="row">
         <div class="col-md-4">
             <h6><strong>Buscar:</strong></h6>
@@ -17,10 +17,29 @@
             <a href="/pms/reserva" class="btn btn-warning btn-block" style="color: black;"><em>Nueva Reserva</em></a>
         </div>
     </div>
+</div> --}}
+<center><button class="btn btn-info m-2" onclick="return atras();">Atras</button></center>
+<div class="container p-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <input id="reserva_fecha_inicio" type="date" class="form-control">
+            </div>
+            <br>
+            <div class="col-md-4">
+                <input id="reserva_fecha_final" type="date" class="form-control">
+            </div>
+            <br>
+            <div class="col-md-4">
+                <button onclick="admin_buscar_reservas();" class="btn btn-success btn-block">
+                    Buscar
+                </button>
+            </div>
+        </div>
+        <br>
+    </div>
+
 </div>
-
-
-
 <div class="container m-4 mx-auto row text-center m-2 justify-content-center align-items-center bg-info"
     style="border-radius: 0.5em;">
     <div class="col-md-2 ">
@@ -37,37 +56,19 @@
         <h5 style="color: white;">Reserva</h5>
     </div>
     <div class="col-md-2 ">
-        <h5 style="color: white;">Parking</h5>
+        <h5 style="color: white;">Borrar</h5>
     </div>
 
 </div>
-<div class="container p-4 m-4 mx-auto" id="jan_reserva">
 
-    {{#each datos}}
-    <div class="row text-center m-1">
-        <div class="col-md-2  ">
-            <h6 style="color: white;">{{numero_habitacion}}</h6>
+<div id="admin_reserva">
+    <div class="container p-4">
+        <div class="row">
+            <div class="card mx-auto">
+                <div class="card-body bg-danger">
+                    <h5>Escoge una fecha</h5>
+                </div>
+            </div>
         </div>
-        <div class="col-md-3 ">
-            <h6 style="color: white;">{{nombre}} {{apellido}}</h6>
-        </div>
-        <div class="col-md-3 ">
-            <h6 style="color: white;">{{numero_documento}}</h6>
-        </div>
-        <div class="col-md-2 ">
-            <a href="/pms/ver-reserva/{{id_reserva}}" style="color: rgb(9, 207, 98);">Ver</a>
-        </div>
-        <div class="col-md-2 ">
-
-            <a href="/pms/park/{{id_reserva}}" style="color: rgb(223, 10, 10);">Ir</a>
-
-        </div>
-
-
     </div>
-    <div class="dropdown-divider" style="border-color: black;"></div>
-
-
-    {{/each}}
-
-</div>
+</div>  
