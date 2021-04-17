@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-4">
             <h6><strong>Buscar:</strong></h6>
-            <div id="card-buscar" class="card text-center" style="background-color: rgb(186, 201, 250);">
+            <div id="card-buscar" class="card text-center" style="background: rgb(16, 158, 111);">
 
                 <div class="card-body">
                     <form>
@@ -14,17 +14,17 @@
             </div>
         </div>
         <div class="col-md-4 ml-auto" id="nuevo-cliente">
-            <a href="/pms/reserva" class="btn btn-warning btn-block" style="color: black;"><em>Nueva Reserva</em></a>
+            <a href="/pms/reserva" class="btn  btn-block"  id="cajita_pinchar_nueva_reserva" style="color: black;"><em>Nueva Reserva</em></a>
         </div>
     </div>
 </div>
 
 
 
-<div class="container m-4 mx-auto row text-center m-2 justify-content-center align-items-center bg-info"
-    style="border-radius: 0.5em;">
+<div class="container m-4 mx-auto row text-center m-2 justify-content-center align-items-center"
+    style="border-radius: 0.5em;" id="cajita_titulos_reservas">
     <div class="col-md-2 ">
-        <h5 style="color: white;">Habitacion</h5>
+        <h5 style="color: white;"><i>Habitacion</i></h5>
     </div>
     <div class="col-md-3  p-2">
         <h5 style="color: white;">Nombre</h5>
@@ -46,16 +46,16 @@
     {{#each datos}}
     <div class="row text-center m-1">
         <div class="col-md-2  ">
-            <h6 style="color: white;">{{numero_habitacion}}</h6>
+            <h6>{{numero_habitacion}}</h6>
         </div>
         <div class="col-md-3 ">
-            <h6 style="color: white;">{{nombre}} {{apellido}}</h6>
+            <h6>{{nombre}} {{apellido}}</h6>
         </div>
         <div class="col-md-3 ">
-            <h6 style="color: white;">{{numero_documento}}</h6>
+            <h6>{{numero_documento}}</h6>
         </div>
         <div class="col-md-2 ">
-            <a href="/pms/ver-reserva/{{id_reserva}}" style="color: rgb(9, 207, 98);">Ver</a>
+            <a href="/pms/ver-reserva/{{id_reserva}}" style="color: rgb(243, 246, 41);">Ver</a>
         </div>
         <div class="col-md-2 ">
 

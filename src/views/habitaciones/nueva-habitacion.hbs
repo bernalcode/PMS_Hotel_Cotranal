@@ -11,12 +11,12 @@
                 <div class="card-body">
                     <form action="/pms/nu-habitacion" method="POST">
                         <div class="form-group">
-                            <input type="text" name="numero_habitacion" class="form-control" placeholder="Numero Habitacion" autofocus>
+                            <input id="input_numero_Habitacion" type="text" name="numero_habitacion" class="form-control" placeholder="Numero Habitacion"  autofocus>
                         </div>
                         <div class="form-group">
                             <h6>Seleccione el tipo:</h6>
                             
-                            <select name="id_tipo_habitacion" class="form-control">
+                            <select name="id_tipo_habitacion" class="form-control" id="id_tipo_habitacion">
                                 <option selected="true" disabled="disabled">Tipo</option>
                                 {{#each habitacion}}
                                 
@@ -36,7 +36,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-success btn-block">
+                            <button class="btn btn-success btn-block" onclick="return form_agregar_habitacion();">
                                 Guardar
                             </button>
                         </div>

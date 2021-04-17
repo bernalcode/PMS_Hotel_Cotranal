@@ -28,7 +28,7 @@ require('./lib/passport');
 
 
 
-app.set('port', process.env.PORT || 3000);              // Aqui se define el numero de puerto donde se Escucha
+app.set('port', process.env.PORT || 4000);              // Aqui se define el numero de puerto donde se Escucha
 app.set('views', path.join(__dirname, 'views'));        // Direccion de la carpeta de vistas
 
 

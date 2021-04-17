@@ -1,58 +1,91 @@
-<center><a href="/pms/todas-reservas">
-        <--- Atras</a>
-</center>
+<br>
+<a id="cajita_atras_crear_reserva" href="/pms/todas-reservas" class="p-2 m-4">
+        < Atras</a>
+
 <div class="container p-4">
     <div class="row">
-        <div class="col-md-6 mx-auto">
-            <div class="card">
-                <div class="car-header bg-info text-center text-uppercase p-2">
-                    <h3 style="color:black"> Crear Reserva</h3>
+        <div class="col-md-8 mx-auto">
+            <div class="card" id="caja_crear_reserva">
+                <div class="car-header bg-success text-center  p-2" id="caja_crear_reserva">
+                    <h3 style="color:black"> <i><u>C</u>rear Reserva</i></h3>
                 </div>
                 <div class="card-body">
-                    <form action="/pms/reserva" method="POST">
-                        <div class="form-group">
-                            <select name="id_cliente" class="form-control js-example-basic-single">
-                                <option selected="true" disabled="disabled">Cliente</option>
-                                {{#each cliente}}
+                    <form action="/pms/reserva" method="POST" id="form_crear_reserva">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Cliente</h6>
+                                    <select name="crear_reserva_id_cliente" id="crear_reserva_id_cliente"
+                                        class="form-control js-example-basic-single">
+                                        <option selected="true" disabled="disabled">Escoger Cliente</option>
+                                        {{#each cliente}}
 
-                                <option value="{{this.id}}">
-                                    {{this.nombre}} {{this.apellido}}
-                                </option>
-                                {{/each}}
+                                        <option value="{{this.id}}">
+                                            {{this.nombre}} {{this.apellido}}
+                                        </option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Habitacion</h6>
+                                    <select name="crear_reserva_id_habitacion" id="crear_reserva_id_habitacion"
+                                        class="form-control js-example-basic-single" required>
+                                        <option selected="true" disabled="disabled">Escoger Habitacion</option>
+                                        {{#each habitacion}}
 
-                            </select>
+                                        <option value="{{this.id_habitacion}}">
+                                            {{this.numero_habitacion}}
+                                        </option>
+                                        {{/each}}
+
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <select name="id_habitacion" class="form-control js-example-basic-single">
-                                <option selected="true" disabled="disabled">Habitacion</option>
-                                {{#each habitacion}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Check-In</h6>
+                                    <input id="fechaMin" type="date" name="check_in" class="form-control" min=" ">
 
-                                <option value="{{this.id_habitacion}}">
-                                    {{this.numero_habitacion}}
-                                </option>
-                                {{/each}}
 
-                            </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Check-Out</h6>
+                                    <input id="fechaMax" type="date" name="check_out" class="form-control" min=" ">
+
+
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-
-                            <input id="fechaMin" type="date" name="check_in" class="form-control" min=" ">
-
-
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Adultos</h6>
+                                    <input id="crear_reserva_adultos" type="number" name="adultos" class="form-control"
+                                        placeholder="Adultos">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Niños</h6>
+                                    <input id="crear_reserva_ninos" type="number" name="ninos" class="form-control"
+                                        placeholder="Ninos">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input id="fechaMax" type="date" name="check_out" class="form-control" min=" ">
-                            
 
-                        </div>
+
+
+
+
+
                         <div class="form-group">
-                            <input type="number" name="adultos" class="form-control" placeholder="Adultos">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" name="ninos" class="form-control" placeholder="Ninos">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-success btn-block">
+                            <button class="btn btn-success btn-block" onclick="return form_crear_reserva();">
                                 Crear
                             </button>
                         </div>
