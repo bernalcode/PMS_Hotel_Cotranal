@@ -12,12 +12,14 @@
                 </div>
             </div>
         </div>
+        {{#if user.usuario}}
         <div class="col-md-4 ml-auto" id="nuevo-cliente">
             <a href="/pms/nu-habitacion" class="btn btn-success btn-block">Nueva Habitacion</a>
         </div>
+        {{/if}} 
     </div>
 </div>
-<div class="container mx-auto row text-center m-2 p-1 justify-content-center align-items-center bg-success">
+<div class="container mx-auto row text-center m-2 p-1 justify-content-center align-items-center bg-success" style="border-radius: 0.5em;">
     <div class="col-md-2  p-2">
         <h5 id="color-letra-title">Numero</h5>
     </div>
@@ -46,13 +48,13 @@
     {{#each habitacion}}
     <div class="row text-center m-2 justify-content-center align-items-center">
         <div class="col-md-2  p-2">
-            <h6>{{numero_habitacion}}</h6>
+            <h6 style="color: white;">{{numero_habitacion}}</h6>
         </div>
         <div class="col-md-2 ">
             <h6>{{descripcion}}</h6>
         </div>
         <div class="col-md-2 ">
-            <h6>{{precio_habitacion}}</h6>
+            <h6 style="color: white;">{{precio_habitacion}}</h6>
         </div>
         {{#if persona }}
         <div class="col-md-2 ">

@@ -12,7 +12,7 @@
 
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="/pms/todas-reservas">Reservas <span class="sr-only">(current)</span></a>
+                    <a id="item-nav-1" class="nav-link" href="/pms/todas-reservas">Reservas <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/pms/reserva_web">Reserva Web <span class="sr-only">(current)</span></a>
@@ -23,11 +23,11 @@
                         Habitaciones
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/pms/pisos">Pisos</a>
+                        <a id="cajita-menu" class="dropdown-item" href="/pms/pisos">Pisos</a>
                         <div class="dropdown-divider" style="border-color: rgb(75, 255, 4);"></div>
-                        <a class="dropdown-item" href="/pms/prueba">Todas las Habitaciones</a>
+                        <a id="cajita-menu" class="dropdown-item" href="/pms/prueba">Todas las Habitaciones</a>
                         <div class="dropdown-divider" style="border-color: rgb(75, 255, 4);"></div>
-                        <a class="dropdown-item" href="/pms/tipo-habitacion">Tipo de Habitaciones</a>
+                        <a id="cajita-menu" class="dropdown-item" href="/pms/tipo-habitacion">Tipo de Habitaciones</a>
                     </div>
                 </li>
                 <li class="nav-item active">
@@ -44,11 +44,16 @@
                         Mas
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/pms/change-password">Cambiar Contraseña</a>
+                        <a id="cajita-menu" class="dropdown-item" href="/pms/change-password">Cambiar Contraseña</a>
                         <div class="dropdown-divider" style="border-color: rgb(75, 255, 4);"></div>
-                        <a class="dropdown-item" href="/pms/logout">Cerrar Session</a>
+                        <a  id="cajita-menu" class="dropdown-item" href="/pms/logout">Cerrar Session</a>
+                        
+                        {{#if user.usuario}}
+
+                        {{else}}
                         <div class="dropdown-divider" style="border-color: rgb(75, 255, 4);"></div>
-                        <a class="dropdown-item" href="/pms/turno">Entregar Turno</a>
+                        <a id="cajita-menu" class="dropdown-item" href="/pms/turno">Entregar Turno</a>
+                        {{/if}}
                     </div>
                 </li>
                 <li class="nav-item active">

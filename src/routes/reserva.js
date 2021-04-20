@@ -46,6 +46,10 @@ router.route('/pms/todas-reservas')
 
     .get(isLoggedIn, controllers.allReserve)
 
+router.route('/pms/todas-reservas-admin')
+
+    .get(isLoggedIn, controllers.allReserve_admin)
+
 
 router.route('/pms/ver-reserva/:id')
 

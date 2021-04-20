@@ -1,34 +1,25 @@
-<center><a href="/pms/prueba">
-        <--- Atras</a>
-</center>
+<a href="/pms/prueba" id="cajita_atras_crear_reserva" class="p-2 m-2">
+        Atras</a>
+
 <div class="container p-4">
     <div class="row">
-        <div class="col-m d-4 mx-auto">
+        <div class="col-md-5 mx-auto">
             <div class="card">
-                <div class="card-header bg-info">
-                    <h3 align="center">Habitacion</h3>
+                <div class="card-header bg-success">
+                    <h3 align="center" class="text-dark">Habitacion</h3>
                 </div>
                 <div class="card-body">
                     <form action="/pms/editar-habitacion/{{dato.id_habitacion}}" method="POST">
                         <div class="form-group">
-                            <h6>Numero a editar:</h6>
+                            <h6>Numero Habitacion:</h6>
                             <input type="text" name="numero_habitacion" class="form-control"
                                 value="{{dato.numero_habitacion}}">
                         </div>
 
                         <div class="form-group">
-                            <h6>Seleccione el tipo a editar:</h6>
+                            <h6>Seleccione el tipo:</h6>
 
-                            <select name="id_tipo_habitacion" class="form-control">
-                                <option selected="true" value="{{dato.id_tipo_habitacion}}">{{select}}</option>
-                                {{#each newTipo}}
-
-                                <option value="{{this.id_tipo_habitacion}}">
-                                    {{this.descripcion}}
-                                </option>
-                                {{/each}}
-
-                            </select>
+                            <h6 class="form-control">{{dato.descripcion}}</h6>
  
                         </div>
                         <div class="form-group">
@@ -41,10 +32,12 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-success btn-block">
+                            <button class="btn btn-success btn-block text-dark">
                                 Editar
                             </button>
+                            {{#if user.usuario}}
                             <input type="button" value="Borrar" onclick="seg();" class="btn btn-danger btn-block">
+                            {{/if}}
                             <div class="col-md-2 ">
 
                                 <a href="/pms/borrar-habi/{{dato.id_habitacion}}" id="bolar"></a>

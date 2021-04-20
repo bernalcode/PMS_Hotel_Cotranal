@@ -126,6 +126,14 @@ module.exports = {
         res.render('reserva/todas-reservas.hbs', { datos });
     },//_________________________________________________________________________________
 
+    // VER TODAS LA RESERVAS  ADMIN  [GET] ----------------------------------------------------------
+    async allReserve_admin(req, res) {
+        const datos = await sql.query('SELECT numero_habitacion, nombre, apellido, numero_documento, id_reserva FROM habitacion, cliente LEFT OUTER JOIN nueva_reserva ON cliente.id = nueva_reserva.id_cliente where nueva_reserva.id_habitacion = habitacion.id_habitacion ORDER BY id_reserva DESC');
+        res.render('reserva/todas-reservas-admin.hbs', { datos });
+    },//_________________________________________________________________________________
+
+    
+
 
 
     // VER UNA RESERVA ESPECIFICA [GET] ----------------------------------------------------------
@@ -154,13 +162,14 @@ module.exports = {
         var fech_y_ou = cheou.getFullYear();
         var fech_m_ou = cheou.getMonth() + 1;
         var fech_d_ou = cheou.getDate();
-        var fech_d_ou_min = cheou.getDate() + 1;
+        var fech_d_ou_min = cheou.getDate();
         if (fech_m_ou < 10) {
             fech_m_ou = '0' + fech_m_ou;
         };
         if (fech_d_ou < 10) {
             fech_d_ou = '0' + fech_d_ou;
         };
+        //fech_d_ou_min = parseInt(fech_d_ou_min) + 1;
         const fecha_out = fech_y_ou + '-' + fech_m_ou + '-' + fech_d_ou;
         const fecha_out_min = fech_y_ou + '-' + fech_m_ou + '-' + fech_d_ou_min;
         res.render('reserva/ver-reserva', { kato, fecha_in, fecha_out, id, fecha_out_min });
@@ -185,21 +194,31 @@ module.exports = {
 
     // MANDAR DATOS DE LA NUEVA RESERVA Y GUARDARLOS  [POST] ----------------------------------------------------------
     async saveReserve(req, res) {
-        const { id_cliente, id_habitacion, check_in, check_out, adultos, ninos } = req.body;
+        let { id_cliente, id_habitacion, check_in, check_out, adultos, ninos } = req.body;
+        
+        if (ninos == "" || ninos == null) {
+            ninos = 0;
+        }
+        if (check_out == "" || check_out == null) {
+            check_out = check_in;
+        }
+
+        var user_pms = req.user.username;
         const datos = {
             id_cliente,
             id_habitacion,
             check_in,
             check_out,
             adultos,
-            ninos
+            ninos,
+            user_pms
         };
         console.log('1', req.body);
         console.log('2', req.params);
         console.log('3', req.user);
         await sql.query('INSERT INTO nueva_reserva SET ?', [datos])
         req.flash('success', 'Reserva Agregada Satisfactoriamente');
-        res.redirect('/pms/todas-reservas');
+        res.redirect('/pms/todas-reservas'); 
     },//_________________________________________________________________________________
 
 
@@ -266,7 +285,7 @@ module.exports = {
             fech_d_in = '0' + fech_d_in;
         };
         const fecha_in = fech_d_in + '-' + fech_m_in + '-' + fech_y_in;
-        db.check_in = fecha_in;
+        db.check_in = fecha_in; 
         //////////////////////////////////////////////////////////////////
 
         

@@ -84,10 +84,10 @@ api = (search) => {
                 newDiv.setAttribute("id", `${data[a].id}`);
                 newDiv.innerHTML = ` <div class="row text-center">
                                         <div class="col-2">
-                                            <h6 id="nombre-lll">${data[a].nombre}</h6>
+                                            <h6 class="text-white">${data[a].nombre}</h6>
                                         </div>
                                         <div class="col-2">
-                                            <h6>${data[a].apellido}</h6>
+                                            <h6 class="text-white">${data[a].apellido}</h6>
                                         </div>
                                         <div class="col-2">
                                             <h6>${data[a].numero_documento}</h6>
@@ -99,7 +99,7 @@ api = (search) => {
                                             <h6>${data[a].correo}</h6>
                                         </div>
                                         <div class="col-2">
-                                            <a href="/pms/ver-cliente/${data[a].id}">Ver</a>
+                                            <a href="/pms/ver-cliente/${data[a].id}" class="text-danger">Ver</a>
                                         </div>
                                     </div>
                                     <div class="dropdown-divider" style="border-color: black;"></div>`;
@@ -164,10 +164,10 @@ api = (search) => {
                     newDis.setAttribute("id", `${data[a].id}`);
                     newDis.innerHTML = `<div class="row text-center">
                                             <div class="col-2">
-                                                <h6 id="nombre-lll">${data[a].nombre}</h6>
+                                                <h6 class="text-white">${data[a].nombre}</h6>
                                             </div>
                                             <div class="col-2">
-                                                <h6>${data[a].apellido}</h6>
+                                                <h6 class="text-white"${data[a].apellido}</h6>
                                             </div>
                                             <div class="col-2">
                                                 <h6>${data[a].numero_documento}</h6>
@@ -179,7 +179,7 @@ api = (search) => {
                                                 <h6>${data[a].correo}</h6>
                                             </div>
                                             <div class="col-2">
-                                                <a href="/pms/ver-cliente/${data[a].id}">Ver</a>
+                                                <a href="/pms/ver-cliente/${data[a].id}" class="text-danger">Ver</a>
                                             </div>
                                         </div>
                                         <div class="dropdown-divider" style="border-color: black;"></div>`;

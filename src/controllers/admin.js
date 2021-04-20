@@ -133,7 +133,7 @@ module.exports = {
             e.created_at = DS + ' : ' + DD + ' - ' + MM + ' - ' + YY;
         })
 
-        res.json(db); 
+        res.json(db);
     },
     //_______________________________________________________________________________________
 
@@ -153,6 +153,11 @@ module.exports = {
     async auditoria_reservas_creadas(req, res) {
         res.render('admin/auditoria/reservas_creadas.hbs')
     },
+
+    db_PMS_creados(req, res) {
+        res.render('admin/auditoria/db_PMS.hbs')
+    },
+
 
 
 
@@ -177,9 +182,18 @@ module.exports = {
     // BORRAR UN USUARIO DEL PMS
     async deleteUser(req, res) {
         const { id } = req.params;
-        await sql.query('DELETE FROM users WHERE id = ?', [id]);
-        req.flash('success', 'Usuario Eliminado con Exito !');
-        res.redirect('/pms/todos-signup');
+        var user_pm = await sql.query('SELECT username FROM users WHERE id = ?', [id]);
+        var user_pms = user_pm[0].username;
+        var accion_true = await sql.query('SELECT user_pms FROM nueva_reserva WHERE user_pms = ?', [user_pms]);
+        if (accion_true.length != 0) {
+            await sql.query('DELETE FROM users WHERE id = ?', [id]);
+            req.flash('success', 'Usuario Eliminado con Exito !');
+            res.redirect('/pms/usuarios-pms');
+        }
+        req.flash('message', 'ERROR!!\n El usuario tiene acciones en el Sistema !');
+        res.redirect('/pms/usuarios-pms');
+
+
     },
 
     redirect(req, res) {

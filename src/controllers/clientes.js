@@ -6,7 +6,7 @@ const sql_copia = require('../database_copia');
 module.exports = {
 
     // AUDITORIA A CLIENTES CREADOS
-    async audi_clientes(req, res) { 
+    async audi_clientes(req, res) {
 
         //FECHA INICIO Y FECHA FINAL PARA LA BUSQUEDA
         var { fecha_ini, fecha_fin } = req.params
@@ -178,9 +178,19 @@ module.exports = {
             correo,
             usuario_pms
         };
-        var volvio = await sql.query('INSERT INTO cliente SET ?', [datosCliente]);
-        var id = volvio.insertId;
-        await sql_copia.query('INSERT INTO pms_hotel_copia.cliente SELECT * FROM pms_hotel.cliente WHERE id = ?;', [id]);
+        //var volvio = 
+        try {
+            await sql.query('INSERT INTO cliente SET ?', [datosCliente]);
+        } catch (e) {
+            if (e.code == 'ER_DUP_ENTRY') {
+                req.flash('message', 'Ya existe un Cliente con ese Numero de Documento !!');
+                res.redirect('/pms/registrar-cliente')
+            }
+
+        }
+
+        // var id = volvio.insertId;
+        // await sql_copia.query('INSERT INTO pms_hotel_copia.cliente SELECT * FROM pms_hotel.cliente WHERE id = ?;', [id]);
         req.flash('success', 'Cliente Agregado Satisfactoriamente');
         res.redirect('/pms/clientes');
     },
@@ -190,6 +200,16 @@ module.exports = {
         const { id } = req.params;
         const datos_cliente = await sql.query('SELECT * FROM cliente WHERE id = ?', [id]);
         const fecha = await sql.query('SELECT fecha_expedicion FROM cliente WHERE id = ?', [id]);
+        var sex = await sql.query('SELECT sexo FROM cliente WHERE id = ?', [id]);
+        var sexo = sex[0];
+        var sexo_F = false;
+        var sexo_M = false;
+        if(sexo.sexo == 'M') {
+            sexo_M = true;
+        }
+        if (sexo.sexo == 'F') {
+            sexo_F = true;
+        }
         var date = fecha[0].fecha_expedicion;
         var fech_y = date.getFullYear();
         var fech_m = date.getMonth() + 1;
@@ -202,67 +222,79 @@ module.exports = {
         };
         const fecha_final = fech_y + '-' + fech_m + '-' + fech_d;
         const cliente = datos_cliente[0];
-        res.render('cliente/ver-cliente.hbs', { cliente, fecha_final });
+        res.render('cliente/ver-cliente.hbs', { cliente, fecha_final, sexo_M, sexo_F });
     },
 
     // BORRAR EL CLIENTE DE LA BASE DE DATOS
     async deleteClient(req, res) {
         var { idd } = req.params;
 
-        var volvio = await sql.query('DELETE FROM cliente WHERE id = ?', [idd]);
-        if (volvio) {
-
-
-            var llego = await sql_copia.query('SELECT * FROM cliente WHERE id = ?', [idd]);
-
-
-            var sett = llego[0]
-            const {
-                id,
-                nombre,
-                apellido,
-                sexo,
-                nacionalidad,
-                tipo_documento,
-                numero_documento,
-                fecha_expedicion,
-                lugar_expedicion,
-                celular,
-                correo
-            } = sett;
-            await sql_copia.query(
-                'INSERT INTO cliente_delete (id_delete, nombre, apellido, sexo, nacionalidad, tipo_documento, numero_documento, fecha_expedicion, lugar_expedicion, celular, correo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
-                id,
-                nombre,
-                apellido,
-                sexo,
-                nacionalidad,
-                tipo_documento,
-                numero_documento,
-                fecha_expedicion,
-                lugar_expedicion,
-                celular,
-                correo
-            ]);
-
-
-
-
-
+        var si_reserva = await sql.query('SELECT * FROM nueva_reserva WHERE id_cliente = ?', [idd]);
+        if (si_reserva.length == 0) {
+            // var volvio = 
+            await sql.query('DELETE FROM cliente WHERE id = ?', [idd]);
+            req.flash('success', 'Cliente Borrado con Exito');
+            res.redirect('/pms/clientes');
+        } else {
+            req.flash('message', 'ERROR !\n el cliente tiene una reserva activa');
+            res.redirect(`/pms/ver-cliente/${idd}`);
         }
 
+        // if (volvio) {
+
+
+
+        //     var llego = await sql_copia.query('SELECT * FROM cliente WHERE id = ?', [idd]);
+
+
+        // var sett = llego[0]
+        // const {
+        //     id,
+        //     nombre,
+        //     apellido,
+        //     sexo,
+        //     nacionalidad,
+        //     tipo_documento,
+        //     numero_documento,
+        //     fecha_expedicion,
+        //     lugar_expedicion,
+        //     celular,
+        //     correo
+        // } = sett;
+        // await sql_copia.query(
+        //     'INSERT INTO cliente_delete (id_delete, nombre, apellido, sexo, nacionalidad, tipo_documento, numero_documento, fecha_expedicion, lugar_expedicion, celular, correo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+        //     id,
+        //     nombre,
+        //     apellido,
+        //     sexo,
+        //     nacionalidad,
+        //     tipo_documento,
+        //     numero_documento,
+        //     fecha_expedicion,
+        //     lugar_expedicion,
+        //     celular,
+        //     correo
+        // ]);
 
 
 
 
 
-        req.flash('success', 'Cliente Borrado con Exito');
-        res.redirect('/pms/clientes');
+        // }
+
+
+
+
+
+
+
     },
 
     // EDITAR DATOS DEL CLIENTE 
     async editarCliente(req, res) {
         const { id } = req.params;
+        var usuario_pms = req.user.username;
+
         const { nombre,
             apellido,
             celular,
@@ -271,41 +303,68 @@ module.exports = {
             tipo_documento,
             fecha_expedicion,
             lugar_expedicion,
-            numero_documento,
-            nacionalidad
+            //numero_documento,
+            nacionalidad,
         } = req.body;
 
+        //var dat_repeat = await sql.query('SELECT numero_documento FROM cliente WHERE numero_documento = ?', [numero_documento]);
+
+        // if (dat_repeat.length != 0){
+        //     var date_repeat = dat_repeat[0].numero_documento;
+        //     if (date_repeat == numero_documento){
+        //         req.flash('message', 'ERROR!, Ya existe un cliente con ese Documento');
+        //         res.redirect(`/pms/ver-cliente/${id}`);
+        //     } else {
+    
         const datos = {
             nombre,
             apellido,
             sexo,
             nacionalidad,
             tipo_documento,
-            numero_documento,
+            //numero_documento,
             fecha_expedicion,
             lugar_expedicion,
             celular,
-            correo
+            correo,
+            usuario_pms
         };
 
-        var volvio = await sql.query('UPDATE cliente SET ? WHERE id = ?', [datos, id]);
-        if (volvio) {
-            await sql_copia.query(
-                'INSERT INTO cliente_updates (id_delete, nombre, apellido, sexo, nacionalidad, tipo_documento, numero_documento, fecha_expedicion, lugar_expedicion, celular, correo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
-                id,
-                nombre,
-                apellido,
-                sexo,
-                nacionalidad,
-                tipo_documento,
-                numero_documento,
-                fecha_expedicion,
-                lugar_expedicion,
-                celular,
-                correo
-            ]);
+        try {
+            await sql.query('UPDATE cliente SET ? WHERE id = ?', [datos, id]);
+        } catch(e) {
+            console.log('SOY EEE', e)
         }
-        //await sql_copia.query('INSERT INTO cliente_actualizado SET ?', [datos_copia]);
+
+
+            // }
+        //}
+
+        
+               
+
+        
+
+        // var volvio = 
+        
+        // if (volvio) {
+        //     await sql_copia.query(
+        //         'INSERT INTO cliente_updates (id_delete, nombre, apellido, sexo, nacionalidad, tipo_documento, numero_documento, fecha_expedicion, lugar_expedicion, celular, correo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+        //         id,
+        //         nombre,
+        //         apellido,
+        //         sexo,
+        //         nacionalidad,
+        //         tipo_documento,
+        //         numero_documento,
+        //         fecha_expedicion,
+        //         lugar_expedicion,
+        //         celular,
+        //         correo
+        //     ]);
+        // }
+
+        // await sql_copia.query('INSERT INTO cliente_actualizado SET ?', [datos_copia]);
         req.flash('success', 'Cliente Editado con Exito');
         res.redirect('/pms/clientes');
     }

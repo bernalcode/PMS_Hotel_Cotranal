@@ -1,24 +1,27 @@
-//MOSTRAR CONTRASEÑA AL CAMBIARLA 
+//MOSTRAR CONTRASEÑA AL CAMBIARLA ------------------------
 mostrar_pass = (evt) => {
     evt.preventDefault();
     var change1 = document.getElementById("change1");
     var change2 = document.getElementById("change2");
     change1.setAttribute("type", "text");
     change2.setAttribute("type", "text");
-    
+
 };
+//----------------------------------------------------------
 
 
 
-//OCULTAR CONTRASEÑA AL CAMBIARLA 
+//OCULTAR CONTRASEÑA AL CAMBIARLA --------------------------
 ocultar_pass = (evt) => {
     evt.preventDefault();
     var change1 = document.getElementById("change1");
     var change2 = document.getElementById("change2");
     change1.setAttribute("type", "password");
     change2.setAttribute("type", "password");
-    
+
 };
+//----------------------------------------------------------
+
 
 //CONFIRMAR CAMBIO DE CONTRASEÑA
 confirmar_pass = (d) => {
@@ -27,7 +30,7 @@ confirmar_pass = (d) => {
 };
 
 submit_pass = () => {
-    
+
     var pass1 = document.getElementById("change1")
     var pass2 = document.getElementById("change2")
 
@@ -49,7 +52,7 @@ submit_pass = () => {
 
 
 
-// VALIDACION DE INGRESO AL PMS
+// VALIDACION DE INGRESO AL PMS ----------------------------
 form_signin = () => {
     var user = document.getElementById("usuario").value;
     var pass = document.getElementById("contraseña").value;
@@ -71,22 +74,52 @@ form_signin = () => {
     }
     return false;
 };
+//-------------------------------------------------------------------------
 
-// BORRAR USUARIO DEL PMS
-BorrarUserPms = () => {
 
-    Swal.fire(
-        'No se puede Borrar!',
-        'El usuario tiene Acciones en el sistema ...',
-        'error'
-    );
 
-    return false;
+
+// BORRAR USUARIO DEL PMS -----------------------------------------
+BorrarUserPms = (t) => {
+    this.r = t
+    this.f = false;
+    async function ss() {
+        await Swal.fire({
+            title: 'Estas Seguro?',
+            text: r,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Estoy Seguro!'
+        }).then((result, r, f) => {
+            if (result.isConfirmed) {
+                console.warn('llego t', t);
+                Swal.fire(
+                    'Eliminado con Exito!',
+                    r,
+                    'success'
+                )
+                f = false;
+                return f;
+
+                // fetch(`http://localhost:4000/pms/borrar-user/${t}`)
+                // .then(response => response.json())
+                // .then(data => console.warn(data));
+            }
+        })
+    }
+    console.warn('llego');
+    return ss();
 };
+//----------------------------------------------------------------
 
 
-// RESETEAR PASSWORD DE USUARIO : "usuario123"
-ResetPassword = async () => {
+
+
+
+// RESETEAR PASSWORD DE USUARIO : "usuario123" -------------------
+setPassword = async () => {
 
 
     return false;
@@ -101,8 +134,11 @@ atras = () => {
     window.history.back();
     return true;
 };
+//------------------------------------------------------------------
 
 
+
+// BORRAR CLIENTE -----------------------------------------
 async function borrar_cliente() {
     const result = await Swal.fire({
         title: 'Estas Seguro?',
@@ -119,6 +155,7 @@ async function borrar_cliente() {
         document.getElementById("borrar_cliente").click();
     }
 };
+// ------------------------------------------------------- 
 
 async function segur() {
     const result = await Swal.fire({

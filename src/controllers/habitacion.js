@@ -12,11 +12,11 @@ module.exports = {
 
     //EDITAR HABITACION SI ESTA OCUPADA [GET]
     async editOccupiedRoom(req, res) {
-        const {id} = req.params;
+        const { id } = req.params;
         var db = await sql.query('SELECT nombre, apellido, adultos, ninos, estado, check_in, check_out FROM cliente, nueva_reserva, habitacion WHERE habitacion.id_habitacion = ?', [id]);
         var kato = db[0];
-        
-        res.render('habitaciones/habitacion-ocupada.hbs', {kato});
+
+        res.render('habitaciones/habitacion-ocupada.hbs', { kato });
     },
 
     // BORRAR TIPO DE HABITACION [GET]
@@ -76,7 +76,7 @@ module.exports = {
                 };
             };
         };
-        
+
         res.render('habitaciones/prueba.hbs', { habitacion });
     },
 
@@ -101,7 +101,14 @@ module.exports = {
             tipo_habitacion,
             estado
         };
-        await sql.query('INSERT INTO habitacion SET ?', [datos_habitacion]);
+        try {
+            await sql.query('INSERT INTO habitacion SET ?', [datos_habitacion]);
+        } catch (e) {
+            if (e.code == 'ER_DUP_ENTRY') {
+                req.flash('message', 'Ya Existe ese numero de Habitacion !');
+                res.redirect('/pms/nu-habitacion');
+            }
+        }
         req.flash('success', 'Habitacion Registrada con Exito');
         res.redirect('/pms/prueba');
     },

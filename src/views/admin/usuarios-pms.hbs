@@ -1,10 +1,10 @@
-<center><a href="/pms/admin">
-        <--- Atras</a>
-</center>
+<a href="/pms/admin" id="cajita_atras_crear_reserva" class="p-2 m-2">
+        Atras</a>
+
 
 <div id="jan">
 
-    <div class="container m-3 mx-auto bg-info">
+    <div class="container m-3 mx-auto bg-success text-white">
         <div class="row text-center p-2">
             <div class="col-2">
                 <h6><b>Nombre Completo</b></h6>
@@ -41,7 +41,7 @@
                 <h6>{{ tipo_usuario }}</h6>
             </div>
             <div class="col-2">
-                <a href="/pms/borrar-user/{{id}}" onclick="return BorrarUserPms();" class="btn btn-danger">Borrar Usuario</a>
+                <a href="/pms/borrar-user/{{id}}" onclick="return BorrarUserPms({{id}});" class="btn btn-danger">Borrar Usuario</a>
             </div>
             <div class="col-2">
                 <a href="/pms/reset-password/{{id}}" onclick="return ResetPassword();" class="btn btn-success">Reset password</a>

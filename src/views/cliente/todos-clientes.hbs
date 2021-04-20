@@ -3,8 +3,8 @@
 
 {{!-- {{{body}}} --}}
 
-<div class="container m-3 mx-auto bg-info" id="div-uno">
-    <div class="row text-center p-2">
+<div class="container m-3 mx-auto bg-success" id="div-uno" style="border-radius: 0.5em;">
+    <div class="row text-center p-2" id="color-letra-title">
         <div class="col-2">
             <h5>Nombre</h5>
         </div>
@@ -31,10 +31,10 @@
     <div class="container mx-auto  m-2" id="div-dos">
         <div class="row text-center">
             <div class="col-2">
-                <h6 id="nombre-lll">{{ nombre }}</h6>
+                <h6 style="color: white;">{{ nombre }}</h6>
             </div>
             <div class="col-2">
-                <h6>{{ apellido }}</h6>
+                <h6  style="color: white;">{{ apellido }}</h6>
             </div>
             <div class="col-2">
                 <h6>{{ numero_documento }}</h6>
@@ -46,7 +46,7 @@
                 <h6>{{ correo }}</h6>
             </div>
             <div class="col-2">
-                <a href="/pms/ver-cliente/{{id}}">Ver</a>
+                <a href="/pms/ver-cliente/{{id}}" style="color: red">Ver</a>
             </div>
         </div>
         <div class="dropdown-divider" style="border-color: black;"></div>

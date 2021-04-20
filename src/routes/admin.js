@@ -27,6 +27,11 @@ router.route('/pms/admin_auditoria/clientes/creados')
     .get(isLoggedIn, isAdmin, controllers.auditoria_clientes_creados);
 
 
+router.route('/pms/admin_auditoria/db_PMS/creados')
+
+    .get(isLoggedIn, isAdmin, controllers.db_PMS_creados);
+
+
 router.route('/pms/admin_auditoria/reservas/creadas')
 
     .get(isLoggedIn, isAdmin, controllers.auditoria_reservas_creadas);

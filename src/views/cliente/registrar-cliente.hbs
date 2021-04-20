@@ -3,8 +3,8 @@
         <div class="col-md-9 mx-auto">
             <div class="card">
                 <div class="card-header p-1" style="background-color: darkgray;">
-                    <h3 align="center">
-                        Registrar Cliente
+                    <h3 align="center" class="text-dark">
+                        <u>R</u>egistrar Cliente
                     </h3>
                 </div>
                 <div class="card-body">
@@ -13,14 +13,25 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <h6>Nombre</h6>
-                                    <input type="text" name="nombre" class="form-control" placeholder="Nombre"
+                                    <input 
+                                        type="text" 
+                                        name="nombre" 
+                                        class="form-control" 
+                                        placeholder="Nombre" 
+                                        id="nombre_rg_cliente"
                                         autofocus>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <h6>Apellido</h6>
-                                    <input type="text" name="apellido" class="form-control" placeholder="Apellido">
+                                    <input 
+                                        type="text" 
+                                        name="apellido" 
+                                        class="form-control" 
+                                        placeholder="Apellido"
+                                        id="apellido_rg_cliente"
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -37,15 +48,20 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <h6>Nacionalidad</h6>
-                                    <input type="text" name="nacionalidad" class="form-control"
-                                        placeholder="Nacionalidad">
+                                    <input 
+                                        type="text" 
+                                        name="nacionalidad" 
+                                        class="form-control"
+                                        placeholder="Nacionalidad"
+                                        id="nacionalidad_rg_cliente"
+                                    >
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <h6>Tipo de Documento</h6>
-                                    <select name="tipo_documento" class="form-control" placeholder="Tipo de documento">
-                                        <option disabled="disabled" selected="selected" value="1">Tipo de Documento
+                                    <select name="tipo_documento" class="form-control" placeholder="Tipo de documento" id="tipo_doc_rg_cliente">
+                                        <option disabled="disabled" selected="selected" value="0">Tipo de Documento
                                         </option>
                                         <option value="1">Cedula</option>
                                         <option value="2">Cedula de Extranjeria</option>
@@ -67,21 +83,22 @@
                         <div class="form-group">
                             <h6>Numero de Cedula</h6>
                             <input type="text" name="numero_documento" class="form-control"
-                                placeholder=" Numero Cedula">
+                                placeholder=" Numero Cedula" id="cedula_rg_cliente">
                         </div>
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <h6>Fecha de Expedicion</h6>
                                     <input type="date" name="fecha_expedicion" class="form-control"
-                                        placeholder="Fecha de Expedicion">
+                                        placeholder="Fecha de Expedicion" onchange="form_registrar_cliente();"
+                                        id="expe_reg_cliente" max="">
                                 </div>
                             </div>
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <h6>Lugar de Expedicion</h6>
                                     <input type="text" name="lugar_expedicion" class="form-control"
-                                        placeholder="Lugar expedicion">
+                                        placeholder="Lugar expedicion" id="lugar_exp_rg_cliente">
                                 </div>
                             </div>
                         </div>
@@ -89,18 +106,18 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <h6>Numero de Contacto</h6>
-                                    <input type="text" name="celular" class="form-control" placeholder="Celular">
+                                    <input type="text" name="celular" class="form-control" placeholder="Celular" id="celular_rg_cliente">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <h6>Correo</h6>
-                                    <input type="text" name="correo" class="form-control" placeholder="Correo">
+                                    <input type="text" name="correo" class="form-control" placeholder="Correo" id="correo_rg_cliente">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-success btn-block">
+                            <button class="btn btn-success btn-block" onclick="return validar_rg_cliente();">
                                 Registro
                             </button>
                         </div>

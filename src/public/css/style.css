@@ -87,3 +87,13 @@ html, body {
     
     min-height: 100%;
 }
+
+
+#item-nav-1:hover {
+    color:  white;
+}
+
+#cajita-menu:hover {
+    background: chartreuse;
+    color: black;
+}

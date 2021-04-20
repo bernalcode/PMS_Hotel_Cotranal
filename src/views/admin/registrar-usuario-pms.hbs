@@ -1,4 +1,4 @@
-<center><a href="/pms/admin" style="margin: 5px; padding: 10px;"><--- Atras </a></center>
+<a href="/pms/admin" style="margin: 5px; padding: 10px;" id="cajita_atras_crear_reserva">Atras </a>
 
 <div class="container p-4">
     <div class="container p-4">
@@ -8,26 +8,26 @@
                     <div class="card-header bg-secondary">
                         <h4 align="center">Registrarse</h4>
                     </div> 
-                    <div class="card-body">
+                    <div class="card-body"> 
                         <form action="/pms/signup" method="POST">
                             <div class="form-group">
-                                <input type="text" name="fullname" class="form-control" placeholder="Nombre Completo" autofocus>
+                                <input id="nombrecompleto_reg_user" type="text" name="fullname" class="form-control" placeholder="Nombre Completo" autofocus>
                             </div>
                             <div class="form-group">
-                                <select name="tipo_usuario" id=""  class="form-control">
-                                    <option value="" selected="selected" disabled="disabled">Tipo Usuario</option>
+                                <select id="tipo_reg_user" name="tipo_usuario" id=""  class="form-control">
+                                    <option value="tipo" selected="selected" disabled="disabled">Tipo Usuario</option>
                                     <option value="admin" class="form-control">Administrador</option>
                                     <option value="recep" class="form-control">Recepcionita</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="username" class="form-control" placeholder="Nombre de Usuario">
+                                <input id="nombreuser_reg_user" type="text" name="username" class="form-control" placeholder="Nombre de Usuario">
                             </div>
                             <div class="form-group">
-                                <input type="password" name="password" class="form-control" placeholder="Password">
+                                <input id="pass_reg_user" type="password" name="password" class="form-control" placeholder="Password">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success btn-block">
+                                <button type="submit" class="btn btn-success btn-block" onclick="return reg_user_pms();">
                                     Registrar
                                 </button>
                             </div>

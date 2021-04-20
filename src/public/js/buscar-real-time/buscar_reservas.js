@@ -57,16 +57,16 @@ function buscar_reservas(search) {
                 newDiv.setAttribute("id", `${data[a].id}`);
                 newDiv.innerHTML = `<div class="row text-center m-1">
                                         <div class="col-md-2  ">
-                                            <h6 style="color: white;">${data[a].numero_habitacion}</h6>
+                                            <h6>${data[a].numero_habitacion}</h6>
                                         </div>
                                         <div class="col-md-3 ">
-                                            <h6 style="color: white;">${data[a].nombre} ${data[a].apellido}</h6>
+                                            <h6>${data[a].nombre} ${data[a].apellido}</h6>
                                         </div>
                                         <div class="col-md-3 ">
-                                            <h6 style="color: white;">${data[a].numero_documento}</h6>
+                                            <h6>${data[a].numero_documento}</h6>
                                         </div>
                                         <div class="col-md-2 ">
-                                            <a href="/pms/ver-reserva/${data[a].id_reserva}" style="color: rgb(9, 207, 98);">Ver</a>
+                                            <a href="/pms/ver-reserva/${data[a].id_reserva}" style="color: rgb(243, 246, 41);">Ver</a>
                                         </div>
                                         <div class="col-md-2 ">
                                     
@@ -131,16 +131,16 @@ function buscar_reservas(search) {
                     newDis.setAttribute("id", `${data[a].id}`);
                     newDis.innerHTML = `<div class="row text-center m-1">
                                             <div class="col-md-2  ">
-                                                <h6 style="color: white;">${data[a].numero_habitacion}</h6>
+                                                <h6>${data[a].numero_habitacion}</h6>
                                             </div>
                                             <div class="col-md-3 ">
-                                                <h6 style="color: white;">${data[a].nombre} ${data[a].apellido}</h6>
+                                                <h6>${data[a].nombre} ${data[a].apellido}</h6>
                                             </div>
                                             <div class="col-md-3 ">
-                                                <h6 style="color: white;">${data[a].numero_documento}</h6>
+                                                <h6>${data[a].numero_documento}</h6>
                                             </div>
                                             <div class="col-md-2 ">
-                                                <a href="/pms/ver-reserva/${data[a].id_reserva}" style="color: rgb(9, 207, 98);">Ver</a>
+                                                <a href="/pms/ver-reserva/${data[a].id_reserva}" style="color: rgb(243, 246, 41);">Ver</a>
                                             </div>
                                             <div class="col-md-2 ">
 
