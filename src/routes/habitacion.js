@@ -46,7 +46,7 @@ router.route('/pms/tipo-habitacion')
 
 router.route('/pms/editar-habitacion-ocupada/:id')
 
-    .get(isLoggedIn, controllers.editOccupiedRoom)
+    .get(isLoggedIn, controllers.editOccupiedRoom) 
 
 
 router.route('/pms/borrar-tipo/:id')

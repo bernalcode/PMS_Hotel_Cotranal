@@ -63,7 +63,7 @@ module.exports = {
         const { id } = req.params;
         await sql.query('DELETE FROM nueva_reserva WHERE id_reserva = ?', [id]);
         req.flash('success', 'Reserva Eliminada con Exito');
-        res.redirect('/pms/todas-reservas');
+        res.redirect('/pms/todas-reservas'); 
     },//_________________________________________________________________________________
 
 
@@ -155,7 +155,7 @@ module.exports = {
         if (fech_d_in < 10) {
             fech_d_in = '0' + fech_d_in;
         };
-        const fecha_in = fech_d_in + '-' + fech_m_in + '-' + fech_y_in;
+        const fecha_in = fech_d_in + '-' + fech_m_in + '-' + fech_y_in; 
 
         //FECHA CHECK_OUT
 
@@ -186,6 +186,7 @@ module.exports = {
             observacion,
             check_out
         };
+
         await sql.query('UPDATE nueva_reserva SET ? WHERE id_reserva = ?', [dato, id]);
         res.redirect('/pms/todas-reservas');
     },//_________________________________________________________________________________

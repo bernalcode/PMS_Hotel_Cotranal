@@ -14,6 +14,7 @@ module.exports = {
     async editOccupiedRoom(req, res) {
         const { id } = req.params;
         var db = await sql.query('SELECT nombre, apellido, adultos, ninos, estado, check_in, check_out FROM cliente, nueva_reserva, habitacion WHERE habitacion.id_habitacion = ?', [id]);
+        console.table(db);
         var kato = db[0];
 
         res.render('habitaciones/habitacion-ocupada.hbs', { kato });
@@ -111,7 +112,7 @@ module.exports = {
         }
         req.flash('success', 'Habitacion Registrada con Exito');
         res.redirect('/pms/prueba');
-    },
+    }, 
 
     // AGREGAR UN NUEVA HABITACION DESDE EL TIPO CORRESPONDIENTE  [GET]
     async newRoomOfTyperoomsGet(req, res) {

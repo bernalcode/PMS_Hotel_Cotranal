@@ -179,33 +179,48 @@ module.exports = {
         res.render('admin/usuarios-pms.hbs', { todos });
     },
 
-    // BORRAR UN USUARIO DEL PMS
+
+    // BORRAR UN USUARIO DEL PMS --------------------
     async deleteUser(req, res) {
         const { id } = req.params;
         var user_pm = await sql.query('SELECT username FROM users WHERE id = ?', [id]);
         var user_pms = user_pm[0].username;
-        var accion_true = await sql.query('SELECT user_pms FROM nueva_reserva WHERE user_pms = ?', [user_pms]);
-        if (accion_true.length != 0) {
-            await sql.query('DELETE FROM users WHERE id = ?', [id]);
-            req.flash('success', 'Usuario Eliminado con Exito !');
+        var usee = req.user.username;
+        if (user_pms == usee) {
+            req.flash('message', 'Error!, El usuario tiene la sesion Activa "CONTACTE A OTRO ADMINISTRADOR...');
+            res.redirect('/pms/usuarios-pms');
+
+        } else {
+            var accion_true = await sql.query('SELECT user_pms FROM nueva_reserva WHERE user_pms = ?', [user_pms]);
+            if (accion_true.length == 0) {
+                await sql.query('DELETE FROM users WHERE id = ?', [id]);
+                req.flash('success', 'Usuario Eliminado con Exito !');
+                res.redirect('/pms/usuarios-pms');
+            }
+            req.flash('message', 'ERROR!!\n El usuario tiene acciones en el Sistema !');
             res.redirect('/pms/usuarios-pms');
         }
-        req.flash('message', 'ERROR!!\n El usuario tiene acciones en el Sistema !');
-        res.redirect('/pms/usuarios-pms');
+
+
+
 
 
     },
+
+    // ---------------------------------------------------------------
 
     redirect(req, res) {
         res.redirect('/pms/todos-signup')
     },
 
-    // REGISTRAR UN NUEVO USUARIO
+
+    // REGISTRAR UN NUEVO USUARIO ----------------
     signupUsersPmsGet(req, res) {
         res.render('admin/registrar-usuario-pms.hbs');
     },
 
-    // MANDAR DATOS POST A LA BASE DE DATOS Y CREAR  USUARIO ... 
+
+    // MANDAR DATOS POST A LA BASE DE DATOS Y CREAR  USUARIO ... -----------
     async signupUsersPmsPost(req, res) {
 
         var {
@@ -213,7 +228,14 @@ module.exports = {
             tipo_usuario,
             username,
             password } = req.body;
-        var usuario_tipo = 'true';
+
+        var usuario_tipo = 'false';
+
+        if (tipo_usuario == 'admin') {
+            usuario_tipo = 'true';
+        }
+
+
         password = await helpers.encryptPassword(password);
 
         const newUser = {
@@ -228,7 +250,7 @@ module.exports = {
         res.redirect('/pms/admin');
     },
 
-
+    // ---------------------------------------------------------------
     async resetPassword(req, res) {
         const { id } = req.params;
         const userr = await sql.query('SELECT * FROM users WHERE id = ?', [id]);

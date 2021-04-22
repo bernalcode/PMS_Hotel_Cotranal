@@ -1,10 +1,5 @@
-<button class="btn btn-success m-2 p-2" onclick="return atras();">Atras</button>
-<script>
-    atras = () => {
-        window.history.back();
-        return true;
-    }
-</script>
+<a href="/pms/todas-reservas" class="m-2 p-2" id="cajita_atras_crear_reserva">Atras</a>
+
 
 
 <div class="container p-1 mx-auto">
@@ -49,8 +44,9 @@
                                     <h6 class="form-control">{{fecha_in}}</h6>
                                 </div>
                                 <div class="col-md-6">
-                                    <h6>Check-Out</h6> 
-                                    <input type="date" class="form-control" name="check_out" value="{{fecha_out}}" min="{{fecha_out_min}}">
+                                    <h6>Check-Out</h6>
+                                    <input type="date" class="form-control" name="check_out" value="{{fecha_out}}"
+                                        min="{{fecha_out_min}}">
                                 </div>
                             </div>
                         </div>
@@ -68,13 +64,15 @@
                                     <button type="submit" class="btn btn-warning" style="color: green;">Guardar</button>
                                 </div>
                                 {{#if user.usuario}}
-                                <div class="col-md-3 ml-auto">
-                                    <button type="submit" class="btn btn-danger text-white">Borrar Reserva</button>
+                                <div class="col-3 ml-auto">
+                                    <a href="/pms/borrar-reserva/{{id}}" id="borrar_reserva"></a>
+                                    <input type="button" value="Borrar Reserva" name="noSeBorro" onclick="borrar_reserva();"
+                                        class="btn btn-danger btn-block">
                                 </div>
                                 {{/if}}
                             </div>
-                            
-                            
+
+
 
 
                         </div>

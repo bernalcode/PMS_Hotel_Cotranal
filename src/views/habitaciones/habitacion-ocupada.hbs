@@ -1,40 +1,41 @@
-<center><a href="/pms/prueba">Atras <--- </a></center>
-
+<a href="/pms/prueba" id="cajita_atras_crear_reserva" class="p-2 m-2">Atras</a>
+<br>
 <div class="container p-3 mx-auto">
     <div class="row">
         <div class="col-md-8 mx-auto">
+            <br>
             <div class="card" style="border: solid 2px rgb(90, 247, 90);">
-                <div class="card-body"> 
-                    <form action="/pms/observacion/{{id}}" method="POST">
-                        <div class="form-group"> 
+                <div class="card-body">
+                    <form action="/pms/observacion/{{id}}" method="POST">  
+                        <div class="form-group">
                             <div class="row">
                                 <div class="col-md-8">
                                     <h6>Cliente</h6>
-                                    <input name="cliente" type="text" class="form-control" value="{{kato.nombre}} {{kato.apellido}}">
+                                    <h6 class="form-control">{{kato.nombre}} {{kato.apellido}}</h6>
                                 </div>
                                 <div class="col-md-4 mx-auto">
                                     <h6>Ver Cliente</h6>
-                                    <a href="/pms/ver/{{kato.id}}" class="btn btn-info btn-block">Ver</a>
+                                    <a href="/pms/ver/{{kato.id}}" class="btn btn-success btn-block">Ver</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group"> 
+                        <div class="form-group">
                             <div class="row">
-                                
+
                                 <div class="col-md-4">
                                     <h6>Adultos</h6>
-                                    <input name="adultos" type="text" class="form-control" value="{{kato.adultos}}">
+                                    <h6 class="form-control">{{kato.adultos}}</h6>
                                 </div>
                                 <div class="col-md-4">
                                     <h6>Ninos</h6>
-                                    <input name="ninos" type="text" class="form-control" value="{{kato.ninos}}">
+                                    <h6 class="form-control">{{kato.ninos}}</h6>
                                 </div>
                                 <div class="col-md-4">
                                     <h6>Estado</h6>
                                     <select name="estado_ocupada" id="stado_ocupada" class="form-control">
                                         <option value="limpia">Limpia</option>
                                         <option value="limpeza">En Limpieza</option>
-                                        <option value="mantenimietno">Mantenimiento</option>
+
                                     </select>
                                 </div>
                             </div>
@@ -44,15 +45,18 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <h6>Check-In</h6>
-                                    <input name="checkin" type="text" class="form-control" value="{{fecha_in}}">
+                                    <h6 class="form-control">{{fecha_in}}</h6>
                                 </div>
                                 <div class="col-md-6">
                                     <h6>Check-Out</h6>
-                                    <input name="checkout" type="text" class="form-control"  value="{{fecha_out}}">
+                                    <h6 class="form-control">{{fecha_out}}</h6>
                                 </div>
                             </div>
                         </div>
-                        
+                        <button class="btn btn-success text-dark">
+                            Guardar
+                        </button>
+
 
                     </form>
                 </div>

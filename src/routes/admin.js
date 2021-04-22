@@ -48,7 +48,7 @@ router.route('/pms/usuarios-pms')
 
 router.route('/pms/borrar-user/:id')
 
-    .get(isLoggedIn, isAdmin, controllers.deleteUser)
+    .get(isLoggedIn, isAdmin, controllers.deleteUser) 
 
 router.route('/pms/signup')
 

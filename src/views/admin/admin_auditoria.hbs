@@ -1,25 +1,98 @@
-<center><button class="btn btn-info m-2" onclick="return atras();">Atras</button></center>
-<h5>Clientes:</h5>
-<ul>
-    <li><a href="/pms/admin_auditoria/clientes/creados">Creados</a></li>
-    <li><a href="/pms/admin_auditoria/clientes/actualizados">Actualizados</a></li>
-    <li><a href="/pms/admin_auditoria/clientes/borrados">Borrados</a></li>
-</ul>
-<h5>Reservas:</h5>
-<ul>
-    <li><a href="/pms/admin_auditoria/clientes/creados">Creados</a></li>
-    <li><a href="/pms/admin_auditoria/clientes/actualizados">Actualizados</a></li>
-    <li><a href="/pms/admin_auditoria/clientes/borrados">Borrados</a></li>
-</ul>
-<h5>Cafeteria:</h5>
-<ul>
-    <li><a href="/pms/admin_auditoria/clientes/creados">Creados</a></li>
-    <li><a href="/pms/admin_auditoria/clientes/actualizados">Actualizados</a></li>
-    <li><a href="/pms/admin_auditoria/clientes/borrados">Borrados</a></li>
-</ul>
-<h5>Base de Datos PMS:</h5>
-<ul>
-    <li><a href="/pms/admin_auditoria/db_PMS/creados">Creados</a></li>
-    <li><a href="/pms/admin_auditoria/db_PMS/actualizados">Actualizados</a></li>
-    <li><a href="/pms/admin_auditoria/db_PMS/borrados">Borrados</a></li>
-</ul>
+<a id="cajita_atras_crear_reserva" href="/pms/admin" class="p-2 m-4">Atras</a>
+<br><br>
+
+{{!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 mx-auto">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+                                aria-controls="collapseOne">
+                                Clientes
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            <ul id="estilos_lista_admin">
+                                <li><a href="/pms/admin_auditoria/clientes/creados">Creados</a></li>
+                                <li><a href="/pms/admin_auditoria/clientes/actualizados">Actualizados</a></li>
+                                <li><a href="/pms/admin_auditoria/clientes/borrados">Borrados</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                aria-controls="collapseTwo">
+                                Reservas
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <ul id="estilos_listas_admin">
+                                <li><a href="/pms/admin_auditoria/clientes/creados">Creados</a></li>
+                                <li><a href="/pms/admin_auditoria/clientes/actualizados">Actualizados</a></li>
+                                <li><a href="/pms/admin_auditoria/clientes/borrados">Borrados</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                aria-controls="collapseThree">
+                                Cafeteria
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            <ul is="estilos_listas_admin">
+                                <li><a href="/pms/admin_auditoria/clientes/creados">Creados</a></li>
+                                <li><a href="/pms/admin_auditoria/clientes/actualizados">Actualizados</a></li>
+                                <li><a href="/pms/admin_auditoria/clientes/borrados">Borrados</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                aria-controls="collapseThree">
+                                Base de Datos PMS
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            <ul is="estilos_listas_admin">
+                                <li><a href="/pms/admin_auditoria/db_PMS/creados">Creados</a></li>
+                                <li><a href="/pms/admin_auditoria/db_PMS/actualizados">Actualizados</a></li>
+                                <li><a href="/pms/admin_auditoria/db_PMS/borrados">Borrados</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}

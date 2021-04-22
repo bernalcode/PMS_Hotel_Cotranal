@@ -80,38 +80,47 @@ form_signin = () => {
 
 
 // BORRAR USUARIO DEL PMS -----------------------------------------
-BorrarUserPms = (t) => {
-    this.r = t
-    this.f = false;
-    async function ss() {
-        await Swal.fire({
-            title: 'Estas Seguro?',
-            text: r,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, Estoy Seguro!'
-        }).then((result, r, f) => {
-            if (result.isConfirmed) {
-                console.warn('llego t', t);
-                Swal.fire(
-                    'Eliminado con Exito!',
-                    r,
-                    'success'
-                )
-                f = false;
-                return f;
 
-                // fetch(`http://localhost:4000/pms/borrar-user/${t}`)
-                // .then(response => response.json())
-                // .then(data => console.warn(data));
-            }
-        })
-    }
-    console.warn('llego');
-    return ss();
-};
+// function borraruu() {
+//     const resultt =  Swal.fire({
+//         title: 'Are you sure?',
+//         text: "You won't be able to revert this!",
+//         icon: 'warning',
+//         showCancelButton: true,
+//         confirmButtonColor: '#3085d6',
+//         cancelButtonColor: '#d33',
+//         confirmButtonText: 'Yes, delete it!'
+//       })
+    
+// }
+
+// async function BorrarUserPms() {
+
+// const result = await Swal.fire({
+//     title: 'Estas Seguro?',
+//     text: 'hola',
+//     icon: 'warning',
+//     showCancelButton: true,
+//     confirmButtonColor: '#3085d6',
+//     cancelButtonColor: '#d33',
+//     confirmButtonText: 'Si, Estoy Seguro!'
+// })
+
+// if (result.value == true) {
+
+// Swal.fire(
+//     'Good job!',
+//     'You clicked the button!',
+//     'success'
+// )
+// }
+
+
+// console.warn('llego');
+
+// return false;
+
+//};
 //----------------------------------------------------------------
 
 
@@ -156,6 +165,28 @@ async function borrar_cliente() {
     }
 };
 // ------------------------------------------------------- 
+
+
+// BORRAR RESERVA -----------------------------------------
+async function borrar_reserva() {
+    const result = await Swal.fire({
+        title: 'Estas Seguro?',
+        text: "Se Elliminaran todos los registros !",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Borrar'
+    })
+    console.log(result);
+
+    if (result.value == true) {
+        document.getElementById("borrar_reserva").click();
+    }
+
+};
+// ------------------------------------------------------- 
+
 
 async function segur() {
     const result = await Swal.fire({

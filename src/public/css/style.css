@@ -91,9 +91,23 @@ html, body {
 
 #item-nav-1:hover {
     color:  white;
+    background: rgb(53, 224, 48);
+    border-radius: 0.5em;
+    margin: 0.5px;
 }
 
 #cajita-menu:hover {
     background: chartreuse;
     color: black;
+}
+
+#estilos_lista_admin li {
+    list-style: none;
+    text-decoration: none;
+}
+
+#estilos_lista_admin li a:hover {
+    
+    text-decoration: none;
+    color: white;
 }
