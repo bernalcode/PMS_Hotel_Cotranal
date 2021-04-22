@@ -5,6 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/logo.png" type="image/x-icon">
     <title>PMS - Hotel Cotranal</title>
     {{!-- GOOGLE FONTS --}}
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
@@ -37,9 +38,9 @@
 
 
     </script>
-    <form name="form_reloj" class="form-group bg_success">
+    {{!-- <form name="form_reloj" class="form-group bg_success">
         <input type="text" name="reloj" size="10" id="cajita_reloj">
-    </form>
+    </form> --}}
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
@@ -55,8 +56,13 @@
     --}}
     {{!----- BOOTSWATCH TEMA OSCURO: "DARKLY" ------}}
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+
     {{!--------- ESTILOS PUBLICOS ------------------}}
     <link rel="stylesheet" href="/css/style.css">
+
+    {{!-- ESTILOS MENU VERTICAL --}}
+    <link rel="stylesheet" href="/css/style_menu.css">
+
     {{!-- ESTILOS SELECT2 [SELECT-OPTION-NUEVA_RESERVA] --}}
     <link href="/css/select2.css" rel="stylesheet" />
 
@@ -66,14 +72,17 @@
 
 <body style="background-color: rgb(204, 215, 250);"> --}}
 
-    <body onload="mueveReloj();">
+    <body>
+    {{!-- onload="mueveReloj();"> --}}
 
         {{> navegacion }}
         {{> message_flash }}
         {{> success_flash }}
 
 
-        {{{body}}}
+        <div id="boody">
+            {{{body}}}
+        </div>
 
 
         {{! -- SCRIPTS BOOTSTRAP --}}

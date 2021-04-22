@@ -1,4 +1,4 @@
-{{#if user}}
+{{!-- {{#if user}}
 <nav class="navbar navbar-expand-lg navbar-success">
     <div class="container">
         <a class="navbar-brand" href="/pms/prueba">Cotranal</a>
@@ -12,7 +12,8 @@
 
 
                 <li class="nav-item active">
-                    <a id="item-nav-1" class="nav-link" href="/pms/todas-reservas">Reservas <span class="sr-only">(current)</span></a>
+                    <a id="item-nav-1" class="nav-link" href="/pms/todas-reservas">Reservas <span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/pms/reserva_web">Reserva Web <span class="sr-only">(current)</span></a>
@@ -49,8 +50,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a id="cajita-menu" class="dropdown-item" href="/pms/change-password">Cambiar Contraseña</a>
                         <div class="dropdown-divider" style="border-color: rgb(75, 255, 4);"></div>
-                        <a  id="cajita-menu" class="dropdown-item" href="/pms/logout">Cerrar Session</a>
-                        
+                        <a id="cajita-menu" class="dropdown-item" href="/pms/logout">Cerrar Session</a>
+
                         {{#if user.usuario}}
 
                         {{else}}
@@ -67,4 +68,114 @@
         </div>
     </div>
 </nav>
+{{/if}} --}}
+
+{{#if user}}
+<div class="menu-collapsed" id="sidemenu">
+    <!--  HEADER -->
+    <div id="header">
+        <div id="menu-btn">
+            <div class="btn-hamburger"></div>
+            <div class="btn-hamburger"></div>
+            <div class="btn-hamburger"></div>
+        </div>
+        <center><div id="title" ><span>Hotel Cotranal Plaza</span></div></center>
+        
+    </div>
+
+    <!-- PROFILE -->
+    <div id="profile">
+        <div id="photo"><img src="/logo.png" alt=""></div>
+        <div id="name" class="text-uppercase"><span><i>{{user.fullname}}</i></span></div>
+    </div>
+
+    <!-- ITEMS -->
+
+    <div id="menu-items">
+        <div class="item">
+            <a href="/pms/todas-reservas">
+                <div class="icon"><img src="/icons/reserva.png" alt=""></div>
+                <div class="title"><span>Reservas</span></div>
+            </a>
+        </div>
+        {{!-- <div class="item separator"></div> --}}
+
+
+        <div class="item">
+            <a href="/pms/reserva_web">
+                <div class="icon"><img src="/icons/reserva_web.png" alt=""></div>
+                <div class="title"><span>Reserva Web</span></div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="/pms/prueba">
+                <div class="icon"><img src="/icons/habitaciones.png" alt=""></div>
+                <div class="title"><span>Habitaciones</span></div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="/pms/pisos">
+                <div class="icon"><img src="/icons/pisos.png" alt=""></div>
+                <div class="title"><span>Pisos</span></div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="/pms/tipo-habitacion">
+                <div class="icon"><img src="/icons/tipos_h.png" alt=""></div>
+                <div class="title"><span>Tipos de Habitaciones</span></div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="/pms/clientes">
+                <div class="icon"><img src="/icons/clientes.png" alt=""></div>
+                <div class="title"><span>Clientes</span></div>
+            </a>
+        </div>
+        
+        <div class="item">
+            <a href="/pms/prueba">
+                <div class="icon"><img src="/icons/cafeteria.png" alt=""></div>
+                <div class="title"><span>Cafeteria</span></div>
+            </a>
+        </div>
+        {{#if user.usuario}}
+        <div class="item">
+            <a href="/pms/admin">
+                <div class="icon"><img src="/icons/admin.png" alt=""></div>
+                <div class="title"><span>Admin</span></div>
+            </a>
+        </div>
+        {{/if}}
+        {{#if user.usuario}}
+        {{else}}
+        <div class="item">
+            <a href="/pms/prueba">
+                <div class="icon"><img src="/icons/turno.png" alt=""></div>
+                <div class="title"><span>Entregar Turno</span></div>
+            </a>
+        </div>
+        {{/if}}
+        <div class="item">
+            <a href="/pms/logout">
+                <div class="icon"><img src="/icons/exit.png" alt=""></div>
+                <div class="title"><span>Cerrar Sesion</span></div>
+            </a>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+    const btn = document.querySelector('#menu-btn')
+    const menu = document.querySelector('#sidemenu')
+    btn.addEventListener('click', e => {
+        menu.classList.toggle("menu-expanded");
+        menu.classList.toggle("menu-collapsed");
+
+        document.querySelector('body').classList.toggle('body-expanded')
+    })
+</script>
 {{/if}}
